@@ -1,0 +1,35 @@
+{
+    "name": "statikbe/laravel-nova-chained-translation-manager",
+    "description": "A translation manager tool for Laravel Nova, that makes use of the chained translator.",
+    "keywords": [
+        "laravel",
+        "nova",
+        "translation",
+        "chained translator",
+        "internationalization",
+        "i18n"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.0",
+        "statikbe/laravel-chained-translator": "*",
+        "illuminate/validation": "^5.8|^6.0|^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Statikbe\\NovaTranslationManager\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Statikbe\\NovaTranslationManager\\ToolServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
