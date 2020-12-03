@@ -11,7 +11,7 @@ class TranslationManager extends Tool
     /**
      * The locales array for the tool.
      *
-     * @var string
+     * @var array
      */
     public static $locales;
 
@@ -41,7 +41,10 @@ class TranslationManager extends Tool
         static::$locales = $locales;
     }
 
-    public static function getLocales()
+    /**
+     * @return array
+     */
+    public static function getLocales(): array
     {
         return static::$locales;
     }

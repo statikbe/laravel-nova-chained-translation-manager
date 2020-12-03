@@ -3,6 +3,7 @@
 namespace Statikbe\NovaTranslationManager\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Statikbe\NovaTranslationManager\TranslationManager;
 
 class UpdateTranslationRequest extends FormRequest
 {
@@ -23,10 +24,11 @@ class UpdateTranslationRequest extends FormRequest
      */
     public function rules()
     {
+        $locales = implode(',', TranslationManager::getLocales());
         return [
-            'locale' => ['required', 'string'], //TODO (opkuist): Check with locales
-            'group' => ['required', 'string'], //TODO (opkuis): Check with groups
-            'key' => ['required', 'string'], //TODO (opkuis): Check with keys
+            'locale' => ['required', 'string', 'in:' . $locales],
+            'group' => ['required', 'string'],
+            'key' => ['required', 'string'],
             'value' => ['nullable', 'string'],
         ];
     }
