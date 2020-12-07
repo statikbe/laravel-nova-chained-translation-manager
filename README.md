@@ -61,7 +61,6 @@ public function boot()
 {
     TranslationManager::setLocales(['en', 'nl']);
 }
-
 ```
 
 ## License
