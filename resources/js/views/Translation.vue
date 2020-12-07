@@ -1,7 +1,7 @@
 <template>
     <loading-view :loading="initialLoading">
         <heading :level="1" class="mb-3">
-            {{ __('Languages') }}
+            {{ __('Translations') }}
         </heading>
         <div class="flex ">
             <!-- search -->
