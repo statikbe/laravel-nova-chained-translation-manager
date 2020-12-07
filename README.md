@@ -10,7 +10,8 @@ are working on the translation files at the same time.
 The Chained Translator package allows translations created by developers to exist separately from translations edited by 
 the content manager in separate `lang` directories. The library merges the translations of both language directories, 
 where the translations of the content manager (the custom translations) override those of the developer (the default 
-translations). Check the documentation of the Laravel Chained Translator for more info.
+translations). Check the documentation of the [Laravel Chained Translator](https://github.com/statikbe/laravel-chained-translator) 
+for more info.
 
 ## Installation
 
@@ -22,7 +23,8 @@ composer require statikbe/laravel-nova-chained-translation-manager
 
 ## Configuration
 
-Have a look at the configuration options of the Laravel Chained Translator library. 
+You can configure the custom language directory name and extend or finetune the service provider of the Laravel Chained
+Translator. Have a look at the configuration options of the [Laravel Chained Translator library](https://github.com/statikbe/laravel-chained-translator). 
 
 ### Supported locales
 
