@@ -21,6 +21,21 @@ The package can be installed through Composer.
 composer require statikbe/laravel-nova-chained-translation-manager
 ```
 
+Next enable the tool in nova. 
+Go to `app/Providers/NovaServiceProvider.php` and add the TranslationManager to the tools.
+```php
+use Statik\NovaTranslationManager\TranslationManager;
+
+    public function tools()
+    {
+        return [
+            new TranslationManager,
+        ];
+    }
+
+```
+
+
 ## Configuration
 
 You can configure the custom language directory name and extend or finetune the service provider of the Laravel Chained
