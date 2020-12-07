@@ -1,6 +1,6 @@
 {
     "name": "statikbe/laravel-nova-chained-translation-manager",
-    "description": "A translation manager tool for Laravel Nova, that makes use of the Laravel Chained Translator.",
+    "description": "The Laravel Nova Chained Translation Manager allows you to easily edit and customise the translations of your current Laravel environment.",
     "keywords": [
         "laravel",
         "nova",
