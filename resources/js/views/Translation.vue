@@ -277,11 +277,16 @@ export default {
           this.initialLoading = false;
         });
     },
+    updateTranslations(val) {
+      const [id, locale] = this.field.split("_");
+      this.translations.find((t) => t.id === id).translations[locale] =
+        val.value;
+      this.cancel();
+    },
     submit(val) {
       Nova.request()
         .put("/nova-vendor/translation-manager/translations/", val)
-        .then(this.cancelEdit)
-        .then(this.getTranslations);
+        .then(this.updateTranslations(val));
     },
     cancel() {
       this.field = null;
