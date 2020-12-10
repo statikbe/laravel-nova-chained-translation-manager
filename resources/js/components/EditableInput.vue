@@ -23,7 +23,13 @@
       @cancel="handleCancel"
     />
 
-    <span v-else class="flex cursor-pointer value hover:bg-gray-200">
+    <div
+      v-else
+      :class="{
+        updated: translation.updated && translation.updated === locale,
+      }"
+      class="flex p-2 transition duration-500 cursor-pointer value hover:bg-gray-100"
+    >
       <div class="w-2/12 uppercase">
         {{ locale }}
       </div>
@@ -50,7 +56,7 @@
         </template>
       </div>
       <icon class="ml-2 text-blue-500" type="edit" />
-    </span>
+    </div>
   </label>
 </template>
 
@@ -125,6 +131,17 @@ export default {
 </script>
 
 <style scoped>
+@keyframes update {
+  0% {
+    background-color: #fff;
+  }
+  25% {
+    background-color: #afa;
+  }
+  100% {
+    background-color: #fff;
+  }
+}
 .editable-input {
   background-color: #eee;
 }
@@ -137,5 +154,9 @@ export default {
 
 .value:hover > svg {
   opacity: 1;
+}
+.updated {
+  animation-name: update;
+  animation-duration: 2s;
 }
 </style>

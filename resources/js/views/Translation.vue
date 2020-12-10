@@ -179,8 +179,9 @@ export default {
         this.translations &&
         this.translations
           .filter(
-            ({ translations }) =>
+            ({ translations, updated }) =>
               !this.onlyMissing ||
+              updated ||
               Object.keys(translations).length < this.locales.length
           )
           .filter(
@@ -279,17 +280,34 @@ export default {
     },
     updateTranslations(val) {
       const [id, locale] = this.field.split("_");
-      this.translations.find((t) => t.id === id).translations[locale] =
-        val.value;
+      this.$set(
+        this.translations.find((t) => t.id === id).translations,
+        locale,
+        val.value
+      );
+      this.$set(
+        this.translations.find((t) => t.id === id),
+        "updated",
+        locale
+      );
       this.cancel();
     },
     submit(val) {
-      Nova.request()
-        .put("/nova-vendor/translation-manager/translations/", val)
-        .then(this.updateTranslations(val))
-        .catch(() =>
-          this.$toasted.show("Something went wrong!", { type: "error" })
-        );
+      if (val && val.value) {
+        Nova.request()
+          .put("/nova-vendor/translation-manager/translations/", val)
+          .then(() => this.updateTranslations(val))
+          .catch(() => {
+            this.$toasted.show("Something went wrong!", {
+              type: "error",
+            });
+          });
+      } else {
+        this.field = null;
+        this.$toasted.show("A translation string is required", {
+          type: "error",
+        });
+      }
     },
     cancel() {
       this.field = null;
