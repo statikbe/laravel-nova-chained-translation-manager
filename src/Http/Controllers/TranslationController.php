@@ -26,11 +26,11 @@ class TranslationController extends AbstractTranslationController
      */
     private $chainedTranslationManager;
 
-    public function __construct(ChainLoader $translationLoader, Filesystem $filesystem)
+    public function __construct(ChainLoader $translationLoader, Filesystem $filesystem, ChainedTranslationManager $chainedTranslationManager)
     {
         $this->translationLoader = $translationLoader;
         $this->fileSystem = $filesystem;
-        $this->chainedTranslationManager = app('chained-translator.manager');
+        $this->chainedTranslationManager = $chainedTranslationManager;
     }
 
     /**
