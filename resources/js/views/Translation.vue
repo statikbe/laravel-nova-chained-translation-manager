@@ -286,7 +286,10 @@ export default {
     submit(val) {
       Nova.request()
         .put("/nova-vendor/translation-manager/translations/", val)
-        .then(this.updateTranslations(val));
+        .then(this.updateTranslations(val))
+        .catch(() =>
+          this.$toasted.show("Something went wrong!", { type: "error" })
+        );
     },
     cancel() {
       this.field = null;
