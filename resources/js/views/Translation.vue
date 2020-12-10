@@ -98,7 +98,7 @@
     <template v-if="filteredTranslations">
       <card
         v-for="translation in filteredTranslations"
-        :key="translation.key"
+        :key="translation.id"
         class="px-4 py-2 my-2"
       >
         <div class="flex mr-6 font-bold no-underline border-b text-90">
