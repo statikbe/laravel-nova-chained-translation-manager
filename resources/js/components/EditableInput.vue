@@ -28,7 +28,7 @@
       :class="{
         updated: translation.updated && translation.updated === locale,
       }"
-      class="flex p-2 transition duration-500 cursor-pointer value hover:bg-gray-100"
+      class="flex p-1 transition duration-500 cursor-pointer value hover:bg-gray-100"
     >
       <div class="w-2/12 uppercase">
         {{ locale }}
