@@ -107,8 +107,11 @@ The MIT License (MIT). Please see [license file](LICENSE.md) for more informatio
 
 ## Screenshots
 
+![Overview](docs/chained-translation-manager.gif "Overview of the Chained Translation Manager")
+
 ![Select different languages](docs/chained-translation-manager-select-lang.png "Only show selected languages")
 
 ![Select different groups](docs/chained-translation-manager-select-group.png "Only show selected groups")
 
 ![Only show missing translations](docs/chained-translation-manager-select-group.png "Only show the translations that are missing")
+
