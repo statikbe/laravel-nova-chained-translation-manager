@@ -1,12 +1,14 @@
 <template>
     <div class="editable-input-field">
         <!-- eslint-disable-next-line vue-a11y/form-has-label -->
-        <input
-            ref="input"
-            v-model="input"
-            type="text"
-            class="w-full form-control form-input form-input-bordered"
-        />
+<!--        <input-->
+<!--            ref="input"-->
+<!--            v-model="input"-->
+<!--            type="text"-->
+<!--            class="w-full form-control form-input form-input-bordered"-->
+<!--        />-->
+
+        <trix-editor :value="input" ref="input" />
         <div class="flex justify-end items-center my-3">
             <button
                 type="button"
