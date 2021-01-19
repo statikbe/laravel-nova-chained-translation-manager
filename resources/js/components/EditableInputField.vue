@@ -46,7 +46,7 @@ export default {
         };
     },
     mounted() {
-        this.$refs.input.select();
+        // this.$refs.input.select();
         this.input = this.value;
     },
     methods: {
