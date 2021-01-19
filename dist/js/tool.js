@@ -1270,7 +1270,16 @@ var render = function() {
     "div",
     { staticClass: "editable-input-field" },
     [
-      _c("trix-editor", { ref: "input", attrs: { value: _vm.input } }),
+      _c("trix-editor", {
+        ref: "input",
+        model: {
+          value: _vm.input,
+          callback: function($$v) {
+            _vm.input = $$v
+          },
+          expression: "input"
+        }
+      }),
       _vm._v(" "),
       _c("div", { staticClass: "flex justify-end items-center my-3" }, [
         _c(

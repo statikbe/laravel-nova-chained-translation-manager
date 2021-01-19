@@ -8,7 +8,7 @@
 <!--            class="w-full form-control form-input form-input-bordered"-->
 <!--        />-->
 
-        <trix-editor :value="input" ref="input" />
+        <trix-editor v-model="input" ref="input" />
         <div class="flex justify-end items-center my-3">
             <button
                 type="button"
