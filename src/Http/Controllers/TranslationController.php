@@ -61,11 +61,13 @@ class TranslationController extends AbstractTranslationController
      */
     public function update(UpdateTranslationRequest $request): JsonResponse
     {
+        $stripeInvalidHTML = strip_tags($request->input('value'),'<code><p><b><u><a>');
+
         $this->chainedTranslationManager->save(
             $request->input('locale'),
             $request->input('group'),
             $request->input('key'),
-            $request->input('value')
+            $stripeInvalidHTML
         );
 
         return response()->json(['success' => true]);
