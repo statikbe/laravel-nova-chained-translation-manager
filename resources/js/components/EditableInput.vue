@@ -41,7 +41,7 @@
             @click="handleEdit"
           >
             <span class="text-left">
-              {{ value.slice(0, 100) + "..." }}
+              {{value.slice(0, 100).replace(/<\/?[^>]+>/ig, " ") + "..." }}
             </span>
           </button>
         </template>
