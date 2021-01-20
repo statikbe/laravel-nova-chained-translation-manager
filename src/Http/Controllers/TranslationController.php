@@ -65,7 +65,7 @@ class TranslationController extends AbstractTranslationController
     {
         $stripeInvalidHTML = strip_tags(
             $request->input('value'),
-            '<code><p><b><u><a><br><ul><li><pre><h2><h3><h4><h5><del><blockquote><ol><dl><dd>'
+            '<code><p><b><u><a><br><ul><li><ol><pre><h2><h3><h4><h5><del><blockquote><dl><dd><strong>'
         );
 
         $this->chainedTranslationManager->save(
