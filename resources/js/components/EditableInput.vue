@@ -40,7 +40,7 @@
             @click="handleEdit"
           >
             <span class="text-left">
-              {{ value }}
+              {{ value.slice(0, 100) + "..." }}
             </span>
           </button>
         </template>

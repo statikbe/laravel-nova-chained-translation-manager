@@ -55,6 +55,8 @@ class ToolServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->publishes([
+            __DIR__ . '/../config/nova-chained-translation-manager.php' => config_path('nova-chained-translation-manager.php'),
+        ], 'nova-chained-translation-manager');
     }
 }

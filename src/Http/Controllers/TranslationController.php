@@ -48,6 +48,7 @@ class TranslationController extends AbstractTranslationController
             'source_language' => config('app.locale'),
             'groups' => $groups,
             'languages' => $languages,
+            'config' => config('nova-chained-translation-manager',[]),
             'translations' => [
                 'data' => $translations,
             ],
