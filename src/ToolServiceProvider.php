@@ -19,6 +19,9 @@ class ToolServiceProvider extends ServiceProvider
     {
         //This can be overwritten by any service provider
         TranslationManager::setLocales(config('app.supported_locales', ['en']));
+        TranslationManager::setConfig(config('nova-chained-translation-manager', [
+            'editor' => 'trix'
+        ]));
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'translation-manager');
 

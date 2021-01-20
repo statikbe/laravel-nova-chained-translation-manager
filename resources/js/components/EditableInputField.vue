@@ -1,14 +1,9 @@
 <template>
     <div class="editable-input-field">
         <!-- eslint-disable-next-line vue-a11y/form-has-label -->
-<!--        <input-->
-<!--            ref="input"-->
-<!--            v-model="input"-->
-<!--            type="text"-->
-<!--            class="w-full form-control form-input form-input-bordered"-->
-<!--        />-->
 
         <trix-editor
+            v-if="config.editor === 'trix'"
             ref="theEditor"
             @keydown.stop
             @trix-change="handleChange"
@@ -19,6 +14,23 @@
             :value="value"
             :placeholder="placeholder"
             class="trix-content"
+        />
+
+        <textarea
+            v-else-if="config.editor === 'textarea'"
+            ref="input"
+            v-model="input"
+            type="text"
+            class="w-full form-control form-input form-input-bordered"
+        />
+
+
+        <input
+            v-else
+            ref="input"
+            v-model="input"
+            type="text"
+            class="w-full form-control form-input form-input-bordered"
         />
 
 
@@ -52,14 +64,21 @@
 export default {
     props: {
         value: {
-            type: String,
-            default: '',
+          type: String,
+          default: '',
         },
         placeholder: {
           type: String,
           default: '',
         },
-        disabled: { type: Boolean, default: false },
+        config: {
+          type: Object,
+          default: null,
+        },
+        disabled: {
+          type: Boolean,
+          default: false
+        },
     },
     data() {
         return {

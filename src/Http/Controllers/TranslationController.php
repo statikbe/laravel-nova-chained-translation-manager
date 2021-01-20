@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Statikbe\NovaTranslationManager\Http\Requests\UpdateTranslationRequest;
 use Statikbe\LaravelChainedTranslator\ChainLoader;
 use Statikbe\LaravelChainedTranslator\ChainedTranslationManager;
+use Statikbe\NovaTranslationManager\TranslationManager;
 
 class TranslationController extends AbstractTranslationController
 {
@@ -48,7 +49,7 @@ class TranslationController extends AbstractTranslationController
             'source_language' => config('app.locale'),
             'groups' => $groups,
             'languages' => $languages,
-            'config' => config('nova-chained-translation-manager',[]),
+            'config' => TranslationManager::getConfig(),
             'translations' => [
                 'data' => $translations,
             ],
@@ -62,7 +63,10 @@ class TranslationController extends AbstractTranslationController
      */
     public function update(UpdateTranslationRequest $request): JsonResponse
     {
-        $stripeInvalidHTML = strip_tags($request->input('value'),'<code><p><b><u><a>');
+        $stripeInvalidHTML = strip_tags(
+            $request->input('value'),
+            '<code><p><b><u><a><br><ul><li><pre><h2><h3><h4><h5><del><blockquote><ol><dl><dd>'
+        );
 
         $this->chainedTranslationManager->save(
             $request->input('locale'),

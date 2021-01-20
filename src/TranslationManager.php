@@ -16,6 +16,13 @@ class TranslationManager extends Tool
     public static $locales;
 
     /**
+     * The config array for the tool.
+     *
+     * @var array
+     */
+    public static $config;
+
+    /**
      * Perform any tasks that need to happen when the tool is booted.
      *
      * @return void
@@ -36,6 +43,9 @@ class TranslationManager extends Tool
         return view('translation-manager::navigation');
     }
 
+    /**
+     * @param  array  $locales
+     */
     public static function setLocales(array $locales)
     {
         static::$locales = $locales;
@@ -47,5 +57,21 @@ class TranslationManager extends Tool
     public static function getLocales(): array
     {
         return static::$locales;
+    }
+
+    /**
+     * @param  array  $config
+     */
+    public static function setConfig(array $config)
+    {
+        static::$config = $config;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getConfig(): array
+    {
+        return static::$config;
     }
 }

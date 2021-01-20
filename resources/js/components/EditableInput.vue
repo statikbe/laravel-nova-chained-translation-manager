@@ -80,6 +80,10 @@ export default {
       type: Object,
       default: null,
     },
+    config: {
+      type: Object,
+      default: null,
+    }
   },
   computed: {
     value() {
@@ -143,7 +147,7 @@ export default {
   }
 }
 .editable-input {
-  background-color: #eee;
+  background-color: #ffffff;
 }
 
 .value > svg {
