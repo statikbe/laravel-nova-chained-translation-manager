@@ -8,7 +8,20 @@
 <!--            class="w-full form-control form-input form-input-bordered"-->
 <!--        />-->
 
-        <trix-editor v-model="input" ref="input" />
+        <trix-editor
+            ref="theEditor"
+            @keydown.stop
+            @trix-change="handleChange"
+            @trix-initialize="initialize"
+            @trix-attachment-add="handleAddFile"
+            @trix-attachment-remove="handleRemoveFile"
+            @trix-file-accept="handleFileAccept"
+            :value="value"
+            :placeholder="placeholder"
+            class="trix-content"
+        />
+
+
         <div class="flex justify-end items-center my-3">
             <button
                 type="button"
@@ -33,12 +46,20 @@
 </template>
 
 <script>
+import Trix from 'trix'
+import 'trix/dist/trix.css'
+
 export default {
     props: {
         value: {
             type: String,
             default: '',
         },
+        placeholder: {
+          type: String,
+          default: '',
+        },
+        disabled: { type: Boolean, default: false },
     },
     data() {
         return {
@@ -50,6 +71,26 @@ export default {
         this.input = this.value;
     },
     methods: {
+        initialize() {
+            this.$refs.theEditor.editor.insertHTML(this.value)
+
+            if (this.disabled) {
+                this.$refs.theEditor.setAttribute('contenteditable', false)
+            }
+        },
+        handleChange() {
+          this.input = this.$refs.theEditor.value;
+          //this.$emit('change', this.$refs.theEditor.value)
+        },
+        handleFileAccept(e) {
+            e.preventDefault();
+        },
+        handleAddFile(event) {
+          this.$emit('file-add', event)
+        },
+        handleRemoveFile(event) {
+          this.$emit('file-remove', event)
+        },
         save() {
             this.$emit('save', this.input);
         },
