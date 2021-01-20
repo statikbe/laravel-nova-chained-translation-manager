@@ -128,6 +128,7 @@
             :locale="locale"
             :translation="translation"
             :editing="field === `${translation.id}_${locale}`"
+            :config="config"
             @toggle="field = `${translation.id}_${locale}`"
             @submit="submit"
             @cancel="cancel"

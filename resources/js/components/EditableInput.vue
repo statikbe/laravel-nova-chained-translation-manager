@@ -17,6 +17,7 @@
     <editable-input-field
       v-if="editing"
       :value="value"
+      :config="config"
       type="text"
       class="w-full"
       @save="handleSave"
