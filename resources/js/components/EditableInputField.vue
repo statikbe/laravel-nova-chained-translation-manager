@@ -46,8 +46,8 @@
 </template>
 
 <script>
-import Trix from 'trix'
-import 'trix/dist/trix.css'
+// import Trix from 'trix'
+// import 'trix/dist/trix.css'
 
 export default {
     props: {
