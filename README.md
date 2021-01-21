@@ -99,6 +99,35 @@ public function boot()
 }
 ```
 
+### Changing your Editor
+Its possible also to change your editor, sometimes the translations values can get big and its good if you have a larger area
+to edit them or even add some bold/underline effects on the fly. You can use 3 supported values: input,textarea,trix. Their names are 
+self-explanatory. Please keep in mind while using Trix you should also configure your allowed HTML tags. 
+Dont forget to clear the cache after changing these settings and refresh your page to see the results :)
+
+E.g.
+```php
+    /*
+    |--------------------------------------------------------------------------
+    | Editor to use
+    |--------------------------------------------------------------------------
+    |
+    | Choose what type of editor you want to use while editing your translations
+    | input - For really dead simple input
+    | textarea - For a larger textarea to deal with
+    | trix - Will use Trix Editor for editing locales supporting some HTML on it.
+    |
+    | Note : Please keep in mind while using Trix to configure your allowed HTML
+    | tags. Otherwise it may pose XSS attacks risk if field could be edited by the end user.
+    |
+    | Values : trix, input, textarea
+    |
+    */
+
+    'editor' => 'input',
+    'trix_allowed_tags' => '<code><p><b><u><a><br><ul><li><ol><pre><h2><h3><h4><h5><del><blockquote><dl><dd><strong>',
+```
+
 ## Credits
 
 We used [Joe Dixon's](https://github.com/joedixon) translation libraries as a source of technical expertise and inspiration:
