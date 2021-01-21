@@ -58,21 +58,25 @@ class TranslationController extends AbstractTranslationController
 
     /**
      * Nova AJAX endpoint to save the translation.
-     * @param UpdateTranslationRequest $request
+     * @param  UpdateTranslationRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(UpdateTranslationRequest $request): JsonResponse
     {
-        $stripeInvalidHTML = strip_tags(
-            $request->input('value'),
-            '<code><p><b><u><a><br><ul><li><ol><pre><h2><h3><h4><h5><del><blockquote><dl><dd><strong>'
-        );
+        # If the editor is a Trix Editor we will stripe all HTML tags excluding the ones defined by the user.
+        $value = $request->input('value');
+        if (TranslationManager::getConfig('editor') === 'trix') {
+            $value = strip_tags(
+                $request->input('value'),
+                TranslationManager::getConfig('trix_allowed_tags', '')
+            );
+        }
 
         $this->chainedTranslationManager->save(
             $request->input('locale'),
             $request->input('group'),
             $request->input('key'),
-            $stripeInvalidHTML
+            $value
         );
 
         return response()->json(['success' => true]);

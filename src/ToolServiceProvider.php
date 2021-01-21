@@ -17,8 +17,17 @@ class ToolServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //This can be overwritten by any service provider
-        TranslationManager::setLocales(config('app.supported_locales', ['en']));
+        // This can be overwritten by any service provider
+        // Here we need some kind of "migration" to keep the old config still valid for people still using the package with
+        // Old config file.
+        // TODO : Probably setLocales no longer make sense and could be migrated to a central config repository.
+
+        $supportedLocales = config(
+            'nova-chained-translation-manager.supported_locales',
+            config('app.supported_locales',['en'])
+        );
+
+        TranslationManager::setLocales($supportedLocales);
         TranslationManager::setConfig(config('nova-chained-translation-manager', [
             'editor' => 'trix'
         ]));
