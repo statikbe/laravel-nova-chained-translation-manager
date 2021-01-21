@@ -70,9 +70,9 @@ class TranslationManager extends Tool
     /**
      * @param  null  $key
      * @param  null  $default
-     * @return array
+     * @return array|mixed
      */
-    public static function getConfig($key = null,$default = null): array
+    public static function getConfig($key = null,$default = null) :?array
     {
         return $key !== null ? \Arr::get(static::$config,$key,$default) : static::$config;
     }
