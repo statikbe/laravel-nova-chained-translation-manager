@@ -83,11 +83,10 @@ export default {
         };
     },
     mounted() {
-        if(this.config.editor !== 'trix'){
+      this.input = this.value;
+      if(this.config.editor !== 'trix'){
           this.$refs.input.select();
-        }else{
-          this.input = this.value;
-        }
+      }
     },
     methods: {
         initialize() {
