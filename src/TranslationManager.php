@@ -72,8 +72,9 @@ class TranslationManager extends Tool
      * @param  null  $default
      * @return array|mixed
      */
-    public static function getConfig($key = null,$default = null) :?array
+    public static function getConfig($key = null,$default = null)
     {
+        # At PHP 8.0 We can use return types as follows : :array|string
         return $key !== null ? \Arr::get(static::$config,$key,$default) : static::$config;
     }
 }
