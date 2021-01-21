@@ -60,7 +60,12 @@ Translator. Have a look at the configuration options of the [Laravel Chained Tra
 There are two ways to change the supported locales.
  
 #### Option 1
-The first option is to add the key `supported_locales` to your `config/app.php` config file. 
+Public withe config file with the command above and configure it as your needs including your supported locales and editor preference.
+
+```shell
+php artisan vendor:publish --tag=nova-chained-translation-manager
+```
+
 E.g.
 ```php
     /*

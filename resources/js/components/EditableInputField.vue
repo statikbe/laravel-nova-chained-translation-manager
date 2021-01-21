@@ -58,9 +58,6 @@
 </template>
 
 <script>
-// import Trix from 'trix'
-// import 'trix/dist/trix.css'
-
 export default {
     props: {
         value: {
@@ -86,8 +83,11 @@ export default {
         };
     },
     mounted() {
-        // this.$refs.input.select();
-        this.input = this.value;
+        if(this.config.editor !== 'trix'){
+          this.$refs.input.select();
+        }else{
+          this.input = this.value;
+        }
     },
     methods: {
         initialize() {
@@ -99,7 +99,6 @@ export default {
         },
         handleChange() {
           this.input = this.$refs.theEditor.value;
-          //this.$emit('change', this.$refs.theEditor.value)
         },
         handleFileAccept(e) {
             e.preventDefault();
