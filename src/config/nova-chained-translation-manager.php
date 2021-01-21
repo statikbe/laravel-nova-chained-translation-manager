@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'editor' => 'trix',
+    'editor' => 'input',
     'trix_allowed_tags' => '<code><p><b><u><a><br><ul><li><ol><pre><h2><h3><h4><h5><del><blockquote><dl><dd><strong>',
 
     /*
