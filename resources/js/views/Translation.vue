@@ -128,6 +128,7 @@
             :locale="locale"
             :translation="translation"
             :editing="field === `${translation.id}_${locale}`"
+            :config="config"
             @toggle="field = `${translation.id}_${locale}`"
             @submit="submit"
             @cancel="cancel"
@@ -166,6 +167,7 @@ export default {
       locales: [],
       field: null,
       value: null,
+      config: [],
       selected: {
         locales: [],
         groups: [],
@@ -268,12 +270,13 @@ export default {
         .get("/nova-vendor/translation-manager/translations/", {
           params: { group: this.group, search: this.search },
         })
-        .then(({ data: { groups, languages, translations } }) => {
+        .then(({ data: { groups, languages, config, translations } }) => {
           this.groups = groups
             .map(this.normalizeGroup)
             .filter(this.filterGroup)
             .reduce((a, b) => (a.includes(b) ? a : [...a, b]), []);
           this.locales = languages;
+          this.config = config;
           this.translations = translations && translations.data;
         })
         .then(!this.selected.locales.length && this.toggleLocales)

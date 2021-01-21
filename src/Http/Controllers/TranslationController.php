@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Statikbe\NovaTranslationManager\Http\Requests\UpdateTranslationRequest;
 use Statikbe\LaravelChainedTranslator\ChainLoader;
 use Statikbe\LaravelChainedTranslator\ChainedTranslationManager;
+use Statikbe\NovaTranslationManager\TranslationManager;
 
 class TranslationController extends AbstractTranslationController
 {
@@ -48,6 +49,7 @@ class TranslationController extends AbstractTranslationController
             'source_language' => config('app.locale'),
             'groups' => $groups,
             'languages' => $languages,
+            'config' => TranslationManager::getConfig(),
             'translations' => [
                 'data' => $translations,
             ],
@@ -56,16 +58,25 @@ class TranslationController extends AbstractTranslationController
 
     /**
      * Nova AJAX endpoint to save the translation.
-     * @param UpdateTranslationRequest $request
+     * @param  UpdateTranslationRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(UpdateTranslationRequest $request): JsonResponse
     {
+        # If the editor is a Trix Editor we will stripe all HTML tags excluding the ones defined by the user.
+        $value = $request->input('value');
+        if (TranslationManager::getConfig('editor') === 'trix') {
+            $value = strip_tags(
+                $request->input('value'),
+                TranslationManager::getConfig('trix_allowed_tags', '')
+            );
+        }
+
         $this->chainedTranslationManager->save(
             $request->input('locale'),
             $request->input('group'),
             $request->input('key'),
-            $request->input('value')
+            $value
         );
 
         return response()->json(['success' => true]);
