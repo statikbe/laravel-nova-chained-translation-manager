@@ -41,19 +41,19 @@ class TranslationController extends AbstractTranslationController
     public function index(): JsonResponse
     {
         $groups = $this->chainedTranslationManager->getTranslationGroups();
-        \Arr::forget($groups,TranslationManager::getConfig('ignore_groups',[]));
+        $groups = collect($groups);
+        $ignore = collect(TranslationManager::getConfig('ignore_groups',[]));
 
         dd(
-            $groups,
-            TranslationManager::getConfig('ignore_groups',[])
+            $groups->diff($ignore)
         );
 
         $languages = $this->getLocalesData();
-        $translations = $this->getTranslations($languages, $groups);
+        $translations = $this->getTranslations($languages, $groups->toArray());
 
         return response()->json([
             'source_language' => config('app.locale'),
-            'groups' => $groups,
+            'groups' => $groups->toArray(),
             'languages' => $languages,
             'config' => TranslationManager::getConfig(),
             'translations' => [
