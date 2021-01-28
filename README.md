@@ -128,6 +128,23 @@ E.g.
     'trix_allowed_tags' => '<code><p><b><u><a><br><ul><li><ol><pre><h2><h3><h4><h5><del><blockquote><dl><dd><strong>',
 ```
 
+### Ignoring Groups
+You may also ignore certain groups of translations to be shown on nova interface. Create an array with keys you want to ignore.
+
+E.g.
+```php
+    /*
+    |--------------------------------------------------------------------------
+    | Ignore Groups
+    |--------------------------------------------------------------------------
+    | This will ignore certain groups from the translations UI
+    | Supports an array of keys
+    |
+    */
+
+    'ignore_groups' => ['auth','pagination','passwords','routes','nova','nova/validation'],
+```
+
 ## Credits
 
 We used [Joe Dixon's](https://github.com/joedixon) translation libraries as a source of technical expertise and inspiration:
