@@ -43,7 +43,7 @@ class TranslationController extends AbstractTranslationController
         $groups = $this->chainedTranslationManager->getTranslationGroups();
         //$groups = collect($groups)->diff(TranslationManager::getConfig('ignore_groups',[]))->toArray();
 
-        dd($groups,collect($groups)->diff(TranslationManager::getConfig('ignore_groups',[]))->toArray());
+        dd($groups,collect($groups)->diff(TranslationManager::getConfig('ignore_groups',[]))->values()->toArray());
         $languages = $this->getLocalesData();
         $translations = $this->getTranslations($languages, $groups);
 
