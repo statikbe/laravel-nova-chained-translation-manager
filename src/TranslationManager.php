@@ -4,6 +4,7 @@ namespace Statikbe\NovaTranslationManager;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
+use Illuminate\Support\Arr;
 
 class TranslationManager extends Tool
 {
@@ -72,9 +73,9 @@ class TranslationManager extends Tool
      * @param  null  $default
      * @return array|mixed
      */
-    public static function getConfig($key = null,$default = null)
+    public static function getConfig($key = null, $default = null)
     {
         # At PHP 8.0 We can use return types as follows : :array|string
-        return $key !== null ? \Arr::get(static::$config,$key,$default) : static::$config;
+        return $key !== null ? Arr::get(static::$config, $key, $default) : static::$config;
     }
 }

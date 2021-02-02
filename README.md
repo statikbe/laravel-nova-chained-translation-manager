@@ -60,7 +60,7 @@ Translator. Have a look at the configuration options of the [Laravel Chained Tra
 There are two ways to change the supported locales.
  
 #### Option 1
-Public withe config file with the command above and configure it as your needs including your supported locales and editor preference.
+Publish the config file with the command below and configure it with your supported locales and editor preferences.
 
 ```shell
 php artisan vendor:publish --tag=nova-chained-translation-manager
@@ -144,6 +144,11 @@ E.g.
 
     'ignore_groups' => ['auth','pagination','passwords','routes','nova','nova/validation'],
 ```
+
+## Merging translations
+
+You can combine the custom translations of the current environment with the default translation files, by running the
+command provided by the [Laravel Chained Translator library](https://github.com/statikbe/laravel-chained-translator) package.
 
 ## Credits
 
