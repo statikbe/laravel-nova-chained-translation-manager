@@ -2,6 +2,11 @@
 
 All notable changes to the Laravel __Nova Chained Translation Manager__ will be documented in this file.
 
+## Version 1.2.1
+### Changed
+- Import error in TranslationManager
+- Update readme with merge command
+
 ## Version 1.2.0
 ### Added
 - added `ignore_groups` configuration parameter to hide translation groups from Nova UI.
