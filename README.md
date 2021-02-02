@@ -129,7 +129,7 @@ E.g.
 ```
 
 ### Ignoring Groups
-You may also ignore certain groups of translations to be shown on nova interface. Create an array with keys you want to ignore.
+You may also ignore certain groups of translations to be shown in the Nova UI. Create an array with keys that you want to ignore:
 
 E.g.
 ```php
