@@ -200,24 +200,26 @@ export default {
           .filter((v) => {
             if (v) {
               const key = v.key;
-              const translations = v.translations;
-              if (this.search) {
-                const keysToSearch = this.selected.locales.length
-                  ? this.selected.locales
-                  : this.locales.map(({ locale }) => locale);
-                return (
-                  key.toLowerCase().includes(this.search.toLowerCase()) ||
-                  keysToSearch.find(
-                    (l) =>
-                      translations[l] &&
-                      translations[l].toLowerCase &&
-                      translations[l]
-                        .toLowerCase()
-                        .includes(this.search.toLowerCase())
-                  )
-                );
+              if(key){
+                const translations = v.translations;
+                if (this.search) {
+                  const keysToSearch = this.selected.locales.length
+                      ? this.selected.locales
+                      : this.locales.map(({ locale }) => locale);
+                  return (
+                      key.toLowerCase().includes(this.search.toLowerCase()) ||
+                      keysToSearch.find(
+                          (l) =>
+                              translations[l] &&
+                              translations[l].toLowerCase &&
+                              translations[l]
+                                  .toLowerCase()
+                                  .includes(this.search.toLowerCase())
+                      )
+                  );
+                }
+                return true;
               }
-              return true;
             }
           })
         // .sort((a, b) => (a.key > b.key ? 1 : -1))
