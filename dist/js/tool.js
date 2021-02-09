@@ -453,6 +453,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         if (v) {
           var key = v.key;
           if (key) {
+            console.log('This is the key', key, v);
             var translations = v.translations;
             if (_this.search) {
               var keysToSearch = _this.selected.locales.length ? _this.selected.locales : _this.locales.map(function (_ref4) {

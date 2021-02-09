@@ -201,6 +201,7 @@ export default {
             if (v) {
               const key = v.key;
               if(key){
+                console.log('This is the key',key,v);
                 const translations = v.translations;
                 if (this.search) {
                   const keysToSearch = this.selected.locales.length
