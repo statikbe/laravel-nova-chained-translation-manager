@@ -101,11 +101,11 @@
         :key="translation.id"
         class="px-4 py-2 my-2"
       >
-        <div class="flex mr-6 font-bold no-underline border-b text-90">
-          <div class="w-1/12">
+        <div class="mr-6 font-bold no-underline border-b text-90">
+          <div class="block">
             {{ translation.group.toUpperCase() }}
           </div>
-          <div class="w-1/12">
+          <div class="block">
             {{ translation.key }}
           </div>
         </div>
