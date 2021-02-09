@@ -451,21 +451,19 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         return !_this.selected.groups.length || _this.selected.groups.includes(_this.normalizeGroup(group));
       }).filter(this.filterGroup).filter(function (v) {
         if (v) {
-          var key = v.key;
-          if (key) {
-            console.log('This is the key', key, v);
-            var translations = v.translations;
-            if (_this.search) {
-              var keysToSearch = _this.selected.locales.length ? _this.selected.locales : _this.locales.map(function (_ref4) {
-                var locale = _ref4.locale;
-                return locale;
-              });
-              return key.toLowerCase().includes(_this.search.toLowerCase()) || keysToSearch.find(function (l) {
-                return translations[l] && translations[l].toLowerCase && translations[l].toLowerCase().includes(_this.search.toLowerCase());
-              });
-            }
-            return true;
+          var key = v.key.toString();
+          console.log('This is the key', key);
+          var translations = v.translations;
+          if (_this.search) {
+            var keysToSearch = _this.selected.locales.length ? _this.selected.locales : _this.locales.map(function (_ref4) {
+              var locale = _ref4.locale;
+              return locale;
+            });
+            return key.toLowerCase().includes(_this.search.toLowerCase()) || keysToSearch.find(function (l) {
+              return translations[l] && translations[l].toLowerCase && translations[l].toLowerCase().includes(_this.search.toLowerCase());
+            });
           }
+          return true;
         }
       })
       // .sort((a, b) => (a.key > b.key ? 1 : -1))
