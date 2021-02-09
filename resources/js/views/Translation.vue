@@ -199,28 +199,26 @@ export default {
           .filter(this.filterGroup)
           .filter((v) => {
             if (v) {
-              const key = v.key;
-              if(key){
-                console.log('This is the key',key,v);
-                const translations = v.translations;
-                if (this.search) {
-                  const keysToSearch = this.selected.locales.length
-                      ? this.selected.locales
-                      : this.locales.map(({ locale }) => locale);
-                  return (
-                      key.toLowerCase().includes(this.search.toLowerCase()) ||
-                      keysToSearch.find(
-                          (l) =>
-                              translations[l] &&
-                              translations[l].toLowerCase &&
-                              translations[l]
-                                  .toLowerCase()
-                                  .includes(this.search.toLowerCase())
-                      )
-                  );
-                }
-                return true;
+              const key = v.key.toString();
+              console.log('This is the key',key);
+              const translations = v.translations;
+              if (this.search) {
+                const keysToSearch = this.selected.locales.length
+                    ? this.selected.locales
+                    : this.locales.map(({ locale }) => locale);
+                return (
+                    key.toLowerCase().includes(this.search.toLowerCase()) ||
+                    keysToSearch.find(
+                        (l) =>
+                            translations[l] &&
+                            translations[l].toLowerCase &&
+                            translations[l]
+                                .toLowerCase()
+                                .includes(this.search.toLowerCase())
+                    )
+                );
               }
+              return true;
             }
           })
         // .sort((a, b) => (a.key > b.key ? 1 : -1))
