@@ -35,10 +35,10 @@ The package can be installed through Composer.
 composer require statikbe/laravel-nova-chained-translation-manager
 ```
 
-Next enable the tool in nova. 
+Next enable the tool in Nova. 
 Go to `app/Providers/NovaServiceProvider.php` and add the TranslationManager to the tools.
 ```php
-use Statik\NovaTranslationManager\TranslationManager;
+use Statikbe\NovaTranslationManager\TranslationManager;
 
     public function tools()
     {
