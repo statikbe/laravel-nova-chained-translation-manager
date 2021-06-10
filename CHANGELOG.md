@@ -2,6 +2,11 @@
 
 All notable changes to the Laravel __Nova Chained Translation Manager__ will be documented in this file.
 
+
+## Version 1.3.0
+### Changed
+- Bumped the version of the laravel-chained-translator library to fix a bug in the translation merging, see https://github.com/statikbe/laravel-chained-translator/issues/1
+
 ## Version 1.3.0
 ### Changed
 - Bumped the version of the laravel-chained-translator library to fix a dependency injection bug, see https://github.com/statikbe/laravel-nova-chained-translation-manager/issues/7
