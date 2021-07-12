@@ -2,8 +2,12 @@
 
 All notable changes to the Laravel __Nova Chained Translation Manager__ will be documented in this file.
 
+## Version 1.4.1
+### Changed
+- Improved the labels of the translations, so that html escaped chars are properly rendered and removed ellipsis after strings smaller than 100 chars.
+- Fix unnecessary redirect to translations API
 
-## Version 1.3.0
+## Version 1.4.0
 ### Changed
 - Bumped the version of the laravel-chained-translator library to fix a bug in the translation merging, see https://github.com/statikbe/laravel-chained-translator/issues/1
 

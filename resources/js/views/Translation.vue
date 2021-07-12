@@ -264,7 +264,7 @@ export default {
     },
     getTranslations() {
       Nova.request()
-        .get("/nova-vendor/translation-manager/translations/", {
+        .get("/nova-vendor/translation-manager/translations", {
           params: { group: this.group, search: this.search },
         })
         .then(({ data: { groups, languages, config, translations } }) => {

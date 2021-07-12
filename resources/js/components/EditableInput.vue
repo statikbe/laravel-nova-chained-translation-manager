@@ -40,8 +40,7 @@
             class="flex items-baseline text-blue-500 hover:underline"
             @click="handleEdit"
           >
-            <span class="text-left">
-              {{value.slice(0, 100).replace(/<\/?[^>]+>/ig, " ") + "..." }}
+            <span class="text-left" v-html="value.slice(0, 100).replace(/<\/?[^>]+>/ig, ' ') + (value.length > 100 ? '...' : '')">
             </span>
           </button>
         </template>
