@@ -35,10 +35,10 @@ The package can be installed through Composer.
 composer require statikbe/laravel-nova-chained-translation-manager
 ```
 
-Next enable the tool in nova. 
+Next enable the tool in Nova. 
 Go to `app/Providers/NovaServiceProvider.php` and add the TranslationManager to the tools.
 ```php
-use Statik\NovaTranslationManager\TranslationManager;
+use Statikbe\NovaTranslationManager\TranslationManager;
 
     public function tools()
     {
@@ -60,7 +60,12 @@ Translator. Have a look at the configuration options of the [Laravel Chained Tra
 There are two ways to change the supported locales.
  
 #### Option 1
-The first option is to add the key `supported_locales` to your `config/app.php` config file. 
+Publish the config file with the command below and configure it with your supported locales and editor preferences.
+
+```shell
+php artisan vendor:publish --tag=nova-chained-translation-manager
+```
+
 E.g.
 ```php
     /*
@@ -93,6 +98,57 @@ public function boot()
     TranslationManager::setLocales(['en', 'nl']);
 }
 ```
+
+### Changing your Editor
+Its possible also to change your editor, sometimes the translations values can get big and its good if you have a larger area
+to edit them or even add some bold/underline effects on the fly. You can use 3 supported values: input,textarea,trix. Their names are 
+self-explanatory. Please keep in mind while using Trix you should also configure your allowed HTML tags. 
+Dont forget to clear the cache after changing these settings and refresh your page to see the results :)
+
+E.g.
+```php
+    /*
+    |--------------------------------------------------------------------------
+    | Editor to use
+    |--------------------------------------------------------------------------
+    |
+    | Choose what type of editor you want to use while editing your translations
+    | input - For really dead simple input
+    | textarea - For a larger textarea to deal with
+    | trix - Will use Trix Editor for editing locales supporting some HTML on it.
+    |
+    | Note : Please keep in mind while using Trix to configure your allowed HTML
+    | tags. Otherwise it may pose XSS attacks risk if field could be edited by the end user.
+    |
+    | Values : trix, input, textarea
+    |
+    */
+
+    'editor' => 'input',
+    'trix_allowed_tags' => '<code><p><b><u><a><br><ul><li><ol><pre><h2><h3><h4><h5><del><blockquote><dl><dd><strong>',
+```
+
+### Ignoring Groups
+You may also ignore certain groups of translations to be shown in the Nova UI. Create an array with keys that you want to ignore:
+
+E.g.
+```php
+    /*
+    |--------------------------------------------------------------------------
+    | Ignore Groups
+    |--------------------------------------------------------------------------
+    | This will ignore certain groups from the translations UI
+    | Supports an array of keys
+    |
+    */
+
+    'ignore_groups' => ['auth','pagination','passwords','routes','nova','nova/validation'],
+```
+
+## Merging translations
+
+You can combine the custom translations of the current environment with the default translation files, by running the
+command provided by the [Laravel Chained Translator library](https://github.com/statikbe/laravel-chained-translator) package.
 
 ## Credits
 

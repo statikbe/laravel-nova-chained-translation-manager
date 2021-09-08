@@ -102,11 +102,8 @@
         class="px-4 py-2 my-2"
       >
         <div class="flex mr-6 font-bold no-underline border-b text-90">
-          <div class="w-2/12">
-            {{ translation.group.toUpperCase() }}
-          </div>
-          <div class="w-10/12">
-            {{ translation.key }}
+          <div class="w-12/12">
+            {{ translation.group.toUpperCase() }} - {{ translation.key }}
           </div>
         </div>
         <div v-if="!selected.locales.length" class="my-3">
@@ -128,6 +125,7 @@
             :locale="locale"
             :translation="translation"
             :editing="field === `${translation.id}_${locale}`"
+            :config="config"
             @toggle="field = `${translation.id}_${locale}`"
             @submit="submit"
             @cancel="cancel"
@@ -166,6 +164,7 @@ export default {
       locales: [],
       field: null,
       value: null,
+      config: [],
       selected: {
         locales: [],
         groups: [],
@@ -197,22 +196,22 @@ export default {
           .filter(this.filterGroup)
           .filter((v) => {
             if (v) {
-              const key = v.key;
+              const key = v.key.toString();
               const translations = v.translations;
               if (this.search) {
                 const keysToSearch = this.selected.locales.length
-                  ? this.selected.locales
-                  : this.locales.map(({ locale }) => locale);
+                    ? this.selected.locales
+                    : this.locales.map(({ locale }) => locale);
                 return (
-                  key.toLowerCase().includes(this.search.toLowerCase()) ||
-                  keysToSearch.find(
-                    (l) =>
-                      translations[l] &&
-                      translations[l].toLowerCase &&
-                      translations[l]
-                        .toLowerCase()
-                        .includes(this.search.toLowerCase())
-                  )
+                    key.toLowerCase().includes(this.search.toLowerCase()) ||
+                    keysToSearch.find(
+                        (l) =>
+                            translations[l] &&
+                            translations[l].toLowerCase &&
+                            translations[l]
+                                .toLowerCase()
+                                .includes(this.search.toLowerCase())
+                    )
                 );
               }
               return true;
@@ -265,15 +264,16 @@ export default {
     },
     getTranslations() {
       Nova.request()
-        .get("/nova-vendor/translation-manager/translations/", {
+        .get("/nova-vendor/translation-manager/translations", {
           params: { group: this.group, search: this.search },
         })
-        .then(({ data: { groups, languages, translations } }) => {
+        .then(({ data: { groups, languages, config, translations } }) => {
           this.groups = groups
             .map(this.normalizeGroup)
             .filter(this.filterGroup)
             .reduce((a, b) => (a.includes(b) ? a : [...a, b]), []);
           this.locales = languages;
+          this.config = config;
           this.translations = translations && translations.data;
         })
         .then(!this.selected.locales.length && this.toggleLocales)

@@ -4,6 +4,7 @@ namespace Statikbe\NovaTranslationManager;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
+use Illuminate\Support\Arr;
 
 class TranslationManager extends Tool
 {
@@ -14,6 +15,13 @@ class TranslationManager extends Tool
      * @var array
      */
     public static $locales;
+
+    /**
+     * The config array for the tool.
+     *
+     * @var array
+     */
+    public static $config;
 
     /**
      * Perform any tasks that need to happen when the tool is booted.
@@ -36,6 +44,9 @@ class TranslationManager extends Tool
         return view('translation-manager::navigation');
     }
 
+    /**
+     * @param  array  $locales
+     */
     public static function setLocales(array $locales)
     {
         static::$locales = $locales;
@@ -47,5 +58,24 @@ class TranslationManager extends Tool
     public static function getLocales(): array
     {
         return static::$locales;
+    }
+
+    /**
+     * @param  array  $config
+     */
+    public static function setConfig(array $config)
+    {
+        static::$config = $config;
+    }
+
+    /**
+     * @param  null  $key
+     * @param  null  $default
+     * @return array|mixed
+     */
+    public static function getConfig($key = null, $default = null)
+    {
+        # At PHP 8.0 We can use return types as follows : :array|string
+        return $key !== null ? Arr::get(static::$config, $key, $default) : static::$config;
     }
 }

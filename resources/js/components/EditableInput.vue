@@ -17,6 +17,7 @@
     <editable-input-field
       v-if="editing"
       :value="value"
+      :config="config"
       type="text"
       class="w-full"
       @save="handleSave"
@@ -39,8 +40,7 @@
             class="flex items-baseline text-blue-500 hover:underline"
             @click="handleEdit"
           >
-            <span class="text-left">
-              {{ value }}
+            <span class="text-left" v-html="value.slice(0, 100).replace(/<\/?[^>]+>/ig, ' ') + (value.length > 100 ? '...' : '')">
             </span>
           </button>
         </template>
@@ -80,6 +80,10 @@ export default {
       type: Object,
       default: null,
     },
+    config: {
+      type: Object,
+      default: null,
+    }
   },
   computed: {
     value() {
@@ -143,7 +147,7 @@ export default {
   }
 }
 .editable-input {
-  background-color: #eee;
+  background-color: #ffffff;
 }
 
 .value > svg {
