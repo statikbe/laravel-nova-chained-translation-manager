@@ -2,6 +2,10 @@
 
 All notable changes to the Laravel __Nova Chained Translation Manager__ will be documented in this file.
 
+## Version 2.0.0
+### Changed
+- Laravel 9 support
+
 ## Version 1.4.1
 ### Changed
 - Improved the labels of the translations, so that html escaped chars are properly rendered and removed ellipsis after strings smaller than 100 chars.
