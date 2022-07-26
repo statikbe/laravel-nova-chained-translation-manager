@@ -40,7 +40,7 @@ class TranslationManager extends Tool
      *
      * @return \Illuminate\View\View
      */
-    public abstract function menu(Request $request)
+    public function menu(Request $request)
     {
         return view('translation-manager::navigation');
     }
