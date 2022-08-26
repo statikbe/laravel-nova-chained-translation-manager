@@ -13,4 +13,4 @@ mix
   processCssUrls: false,
   postCss: [tailwindcss('./tailwind.config.js')]
 })
-.nova('statikbe/nova-translation-manager');
+.nova('statikbe/laravel-nova-chained-translation-manager');
