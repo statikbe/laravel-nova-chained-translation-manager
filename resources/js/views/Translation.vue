@@ -3,15 +3,15 @@
     <Head class="mb-3" :title="__('Translations')" />
     <div class="flex">
       <!-- search -->
-      <div class="relative mb-6 h-9 flex-no-shrink">
-        <icon type="search" class="absolute ml-3 search-icon-center text-70" />
+      <div class="relative mb-6 h-9 flex-no-shrink flex items-center">
+        <icon type="search" class="absolute ml-1 search-icon-center text-70" />
         <label for="search">
           <input
             v-model="search"
             :placeholder="__('Search text')"
             type="search"
             name="search"
-            class="shadow appearance-none form-search w-search pl-search"
+            class="shadow appearance-none form-search w-search pl-search p-2 pl-8"
           />
         </label>
       </div>
