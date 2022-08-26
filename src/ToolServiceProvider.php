@@ -6,6 +6,7 @@ use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Nova\Http\Middleware\Authenticate;
 use Statikbe\NovaTranslationManager\Http\Middleware\Authorize;
 
 class ToolServiceProvider extends ServiceProvider
