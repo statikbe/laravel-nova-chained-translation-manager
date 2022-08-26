@@ -1,9 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Statikbe\NovaTranslationManager\Http\Controllers\LanguageController;
-use Statikbe\NovaTranslationManager\Http\Controllers\TranslationController;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +15,6 @@ use Statikbe\NovaTranslationManager\Http\Controllers\TranslationController;
 */
 
 
-Route::get('/', function() {
-   return inertia('Translation');
+Route::get('/', function(NovaRequest $request) {
+   return inertia('nova-translation-manager');
 });
