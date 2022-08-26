@@ -26,8 +26,10 @@
       <!-- select group -->
       <div class="ml-auto">
         <dropdown class="mb-6 rounded bg-30 hover:bg-40">
-          {{ __("Select group") }}
-          <template #menu>
+          <dropdown-trigger class="px-3">
+            {{ __("Select group") }}
+          </dropdown-trigger>
+          <dropdown-menu slot="menu" direction="rtl" width="250">
             <div class="p-4">
               <ul class="list-reset">
                 <li class="flex items-center mb-4">
@@ -52,7 +54,7 @@
                 </li>
               </ul>
             </div>
-          </template>
+          </dropdown-menu>
         </dropdown>
       </div>
       <!-- select languages -->
@@ -61,32 +63,34 @@
           <dropdown-trigger class="px-3">
             {{ __("Select languages") }}
           </dropdown-trigger>
-          <dropdown-menu slot="menu" direction="rtl" width="250">
-            <div class="p-4">
-              <ul class="list-reset">
-                <li class="flex items-center mb-4">
-                  <checkbox-with-label
-                    :checked="selected.locales.length === locales.length"
-                    @input="toggleLocales"
+          <template #menu>
+            <dropdown-menu slot="menu" direction="rtl" width="250">
+              <div class="p-4">
+                <ul class="list-reset">
+                  <li class="flex items-center mb-4">
+                    <checkbox-with-label
+                      :checked="selected.locales.length === locales.length"
+                      @input="toggleLocales"
+                    >
+                      {{ __("Select All") }}
+                    </checkbox-with-label>
+                  </li>
+                  <li
+                    v-for="l in locales"
+                    :key="l.locale"
+                    class="flex items-center mb-4"
                   >
-                    {{ __("Select All") }}
-                  </checkbox-with-label>
-                </li>
-                <li
-                  v-for="l in locales"
-                  :key="l.locale"
-                  class="flex items-center mb-4"
-                >
-                  <checkbox-input
-                    :value="l.locale"
-                    :text="l.language"
-                    :checked="selected.locales.includes(l.locale)"
-                    :on-toggle="toggleLocales"
-                  />
-                </li>
-              </ul>
-            </div>
-          </dropdown-menu>
+                    <checkbox-input
+                      :value="l.locale"
+                      :text="l.language"
+                      :checked="selected.locales.includes(l.locale)"
+                      :on-toggle="toggleLocales"
+                    />
+                  </li>
+                </ul>
+              </div>
+            </dropdown-menu>
+          </template>
         </dropdown>
       </div>
     </div>
