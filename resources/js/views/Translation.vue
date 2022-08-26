@@ -29,32 +29,34 @@
           <dropdown-trigger class="px-3">
             {{ __("Select group") }}
           </dropdown-trigger>
-          <dropdown-menu slot="menu" direction="rtl" width="250">
-            <div class="p-4">
-              <ul class="list-reset">
-                <li class="flex items-center mb-4">
-                  <checkbox-with-label
-                    :checked="selected.groups.length === groups.length"
-                    @input="toggleGroups"
+          <template #menu>
+            <dropdown-menu slot="menu" direction="rtl" width="250">
+              <div class="p-4">
+                <ul class="list-reset">
+                  <li class="flex items-center mb-4">
+                    <checkbox-with-label
+                      :checked="selected.groups.length === groups.length"
+                      @input="toggleGroups"
+                    >
+                      {{ __("Select All") }}
+                    </checkbox-with-label>
+                  </li>
+                  <li
+                    v-for="group in groups"
+                    :key="group"
+                    class="flex items-center mb-4"
                   >
-                    {{ __("Select All") }}
-                  </checkbox-with-label>
-                </li>
-                <li
-                  v-for="group in groups"
-                  :key="group"
-                  class="flex items-center mb-4"
-                >
-                  <checkbox-input
-                    :value="group"
-                    :text="group"
-                    :checked="selected.groups.includes(group)"
-                    :on-toggle="toggleGroups"
-                  />
-                </li>
-              </ul>
-            </div>
-          </dropdown-menu>
+                    <checkbox-input
+                      :value="group"
+                      :text="group"
+                      :checked="selected.groups.includes(group)"
+                      :on-toggle="toggleGroups"
+                    />
+                  </li>
+                </ul>
+              </div>
+            </dropdown-menu>
+          </template>
         </dropdown>
       </div>
       <!-- select languages -->
