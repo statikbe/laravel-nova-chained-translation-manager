@@ -1,6 +1,5 @@
 /* eslint-disable */
 let mix = require("laravel-mix");
-const {VueLoaderPlugin} = require('vue-loader');
 const tailwindcss = require("tailwindcss");
 
 mix
