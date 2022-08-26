@@ -1,6 +1,6 @@
 <template>
   <loading-view :loading="initialLoading">
-    <head class="mb-3" :title="__('Translations')" />
+    <Head class="mb-3" :title="__('Translations')" />
     <div class="flex">
       <!-- search -->
       <div class="relative mb-6 h-9 flex-no-shrink">
