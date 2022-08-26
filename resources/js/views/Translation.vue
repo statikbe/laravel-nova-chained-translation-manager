@@ -1,8 +1,6 @@
 <template>
   <loading-view :loading="initialLoading">
-    <heading :level="1" class="mb-3">
-      {{ __("Translations") }}
-    </heading>
+    <head class="mb-3" :title="__('Translations')" />
     <div class="flex">
       <!-- search -->
       <div class="relative mb-6 h-9 flex-no-shrink">
@@ -200,18 +198,18 @@ export default {
               const translations = v.translations;
               if (this.search) {
                 const keysToSearch = this.selected.locales.length
-                    ? this.selected.locales
-                    : this.locales.map(({ locale }) => locale);
+                  ? this.selected.locales
+                  : this.locales.map(({ locale }) => locale);
                 return (
-                    key.toLowerCase().includes(this.search.toLowerCase()) ||
-                    keysToSearch.find(
-                        (l) =>
-                            translations[l] &&
-                            translations[l].toLowerCase &&
-                            translations[l]
-                                .toLowerCase()
-                                .includes(this.search.toLowerCase())
-                    )
+                  key.toLowerCase().includes(this.search.toLowerCase()) ||
+                  keysToSearch.find(
+                    (l) =>
+                      translations[l] &&
+                      translations[l].toLowerCase &&
+                      translations[l]
+                        .toLowerCase()
+                        .includes(this.search.toLowerCase())
+                  )
                 );
               }
               return true;
