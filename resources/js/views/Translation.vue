@@ -26,10 +26,8 @@
       <!-- select group -->
       <div class="ml-auto">
         <dropdown class="mb-6 rounded bg-30 hover:bg-40">
-          <dropdown-trigger class="px-3">
-            {{ __("Select group") }}
-          </dropdown-trigger>
-          <dropdown-menu slot="menu" direction="rtl" width="250">
+          {{ __("Select group") }}
+          <template #menu>
             <div class="p-4">
               <ul class="list-reset">
                 <li class="flex items-center mb-4">
@@ -54,7 +52,7 @@
                 </li>
               </ul>
             </div>
-          </dropdown-menu>
+          </template>
         </dropdown>
       </div>
       <!-- select languages -->
