@@ -5,9 +5,9 @@ namespace Statikbe\NovaTranslationManager\Http\Controllers;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
-use Statikbe\NovaTranslationManager\Http\Requests\UpdateTranslationRequest;
-use Statikbe\LaravelChainedTranslator\ChainLoader;
 use Statikbe\LaravelChainedTranslator\ChainedTranslationManager;
+use Statikbe\LaravelChainedTranslator\ChainLoader;
+use Statikbe\NovaTranslationManager\Http\Requests\UpdateTranslationRequest;
 use Statikbe\NovaTranslationManager\TranslationManager;
 
 class TranslationController extends AbstractTranslationController
