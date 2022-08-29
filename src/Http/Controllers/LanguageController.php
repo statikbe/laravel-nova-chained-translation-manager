@@ -2,13 +2,13 @@
 
 namespace Statikbe\NovaTranslationManager\Http\Controllers;
 
-class LanguageController extends AbstractTranslationController {
-
+class LanguageController extends AbstractTranslationController
+{
     /**
      * Returns all available locales with their language names.
      */
-    public function index(){
+    public function index()
+    {
         return response()->json($this->getLocalesData());
     }
-
 }

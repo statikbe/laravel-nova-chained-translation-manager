@@ -24,7 +24,6 @@
             class="w-full form-control form-input form-input-bordered"
         />
 
-
         <input
             v-else
             ref="input"
@@ -32,7 +31,6 @@
             type="text"
             class="w-full form-control form-input form-input-bordered"
         />
-
 
         <div class="flex justify-end items-center my-3">
             <button
@@ -84,7 +82,7 @@ export default {
     },
     mounted() {
       this.input = this.value;
-      if(this.config.editor !== 'trix'){
+      if (this.config.editor !== 'trix') {
           this.$refs.input.select();
       }
     },

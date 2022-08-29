@@ -59,9 +59,8 @@ class ToolServiceProvider extends ServiceProvider
             ->group(__DIR__.'/../routes/inertia.php');
 
         Route::middleware(['nova', Authorize::class])
-                ->namespace(__NAMESPACE__ . '\\Http\\Controllers')
-                ->prefix('nova-vendor/translation-manager')
-                ->group(__DIR__.'/../routes/api.php');
+            ->prefix('nova-vendor/translation-manager')
+            ->group(__DIR__.'/../routes/api.php');
     }
 
     /**

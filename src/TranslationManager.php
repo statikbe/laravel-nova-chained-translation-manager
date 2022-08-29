@@ -43,7 +43,7 @@ class TranslationManager extends Tool
      */
     public function menu(Request $request)
     {
-        return MenuSection::make(__('Translations'))->path('/translation-manager')->icon('globe');
+        return MenuSection::make(__('Translations'))->path('/translation-manager')->icon('globe-alt');
     }
 
     /**

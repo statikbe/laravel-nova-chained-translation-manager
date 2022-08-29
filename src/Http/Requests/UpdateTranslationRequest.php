@@ -25,6 +25,7 @@ class UpdateTranslationRequest extends FormRequest
     public function rules()
     {
         $locales = implode(',', TranslationManager::getLocales());
+
         return [
             'locale' => ['required', 'string', 'in:' . $locales],
             'group' => ['required', 'string'],
