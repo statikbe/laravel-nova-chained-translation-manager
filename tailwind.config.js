@@ -1,7 +1,7 @@
 // File exists to make vscode-tailwindcss work
 module.exports = {
+    content: ["./resources/**/*.{js, vue}"],
     theme: {},
     variants: {},
     plugins: [],
-    purge: ['./resources/js/**/*.js', './resources/js/**/*.vue'],
 };
