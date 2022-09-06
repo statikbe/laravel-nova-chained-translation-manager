@@ -294,8 +294,8 @@ export default {
       Nova.success("Updated");
       // this.$set(
       let translationIndex = this.translations.findIndex((t) => t.id === id);
-      console.log(this.translations, translationIndex);
       this.translations[translationIndex].translations[locale] = val.value;
+      this.translations[translationIndex].updated = locale;
 
       //   locale,
       //   val.value
