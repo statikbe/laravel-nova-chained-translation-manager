@@ -15,7 +15,7 @@
               :placeholder="__('Search text')"
               type="search"
               name="search"
-              class="shadow appearance-none form-search w-search pl-search p-2 pl-8 rounded-md"
+              class="shadow appearance-none form-search w-search pl-search p-2 pl-8 rounded-md dark:bg-gray-800"
             />
           </label>
         </div>

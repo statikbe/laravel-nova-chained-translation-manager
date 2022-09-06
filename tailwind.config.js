@@ -5,5 +5,4 @@ module.exports = {
     theme: {},
     variants: {},
     plugins: [],
-    important: '.translation-manager'
 };
