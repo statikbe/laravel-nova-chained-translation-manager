@@ -292,9 +292,11 @@ export default {
     updateTranslations(val) {
       const [id, locale] = this.field.split("_");
       Nova.success("Updated");
-      console.log(this.translations);
       // this.$set(
-      //   this.translations.find((t) => t.id === id).translations,
+      let translationIndex = this.translations.findIndex((t) => t.id === id);
+      console.log(this.translations, translationIndex);
+      this.translations[translationIndex].translations[locale] = val.value;
+
       //   locale,
       //   val.value
       // );
