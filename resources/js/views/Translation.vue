@@ -308,8 +308,9 @@ export default {
         Nova.request()
           .put("/nova-vendor/translation-manager/translations/", val)
           .then(() => this.updateTranslations(val))
-          .catch(() => {
+          .catch((error) => {
             Nova.error("Something went wrong!");
+            console.log(error);
           });
       } else {
         this.field = null;
