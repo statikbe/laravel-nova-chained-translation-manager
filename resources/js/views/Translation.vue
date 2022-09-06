@@ -291,20 +291,13 @@ export default {
     },
     updateTranslations(val) {
       const [id, locale] = this.field.split("_");
+
       Nova.success("Updated");
-      // this.$set(
+
       let translationIndex = this.translations.findIndex((t) => t.id === id);
       this.translations[translationIndex].translations[locale] = val.value;
       this.translations[translationIndex].updated = locale;
 
-      //   locale,
-      //   val.value
-      // );
-      // this.$set(
-      //   this.translations.find((t) => t.id === id),
-      //   "updated",
-      //   locale
-      // );
       this.cancel();
     },
     submit(val) {
