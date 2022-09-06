@@ -291,16 +291,18 @@ export default {
     },
     updateTranslations(val) {
       const [id, locale] = this.field.split("_");
-      this.$set(
-        this.translations.find((t) => t.id === id).translations,
-        locale,
-        val.value
-      );
-      this.$set(
-        this.translations.find((t) => t.id === id),
-        "updated",
-        locale
-      );
+      Nova.success("Updated");
+      console.log(this.translations);
+      // this.$set(
+      //   this.translations.find((t) => t.id === id).translations,
+      //   locale,
+      //   val.value
+      // );
+      // this.$set(
+      //   this.translations.find((t) => t.id === id),
+      //   "updated",
+      //   locale
+      // );
       this.cancel();
     },
     submit(val) {
@@ -310,7 +312,6 @@ export default {
           .then(() => this.updateTranslations(val))
           .catch((error) => {
             Nova.error("Something went wrong!");
-            console.log(error);
           });
       } else {
         this.field = null;
