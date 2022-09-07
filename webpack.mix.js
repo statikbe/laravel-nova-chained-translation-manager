@@ -8,9 +8,5 @@ mix
   .setPublicPath('dist')
   .js('resources/js/tool.js', 'js')
   .vue({ version: 3 })
-  .css('resources/css/tool.css', 'css')
-  .options({
-    processCssUrls: false,
-    postCss: [tailwindcss('./tailwind.config.js')]
-  })
+  .postCss("resources/css/tool.css", "css", [tailwindcss("./tailwind.config.js")])
   .nova('statikbe/laravel-nova-chained-translation-manager');
