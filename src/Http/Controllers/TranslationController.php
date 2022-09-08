@@ -5,9 +5,9 @@ namespace Statikbe\NovaTranslationManager\Http\Controllers;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
-use Statikbe\NovaTranslationManager\Http\Requests\UpdateTranslationRequest;
-use Statikbe\LaravelChainedTranslator\ChainLoader;
 use Statikbe\LaravelChainedTranslator\ChainedTranslationManager;
+use Statikbe\LaravelChainedTranslator\ChainLoader;
+use Statikbe\NovaTranslationManager\Http\Requests\UpdateTranslationRequest;
 use Statikbe\NovaTranslationManager\TranslationManager;
 
 class TranslationController extends AbstractTranslationController
@@ -27,8 +27,11 @@ class TranslationController extends AbstractTranslationController
      */
     private $chainedTranslationManager;
 
-    public function __construct(ChainLoader $translationLoader, Filesystem $filesystem, ChainedTranslationManager $chainedTranslationManager)
-    {
+    public function __construct(
+        ChainLoader $translationLoader,
+        Filesystem $filesystem,
+        ChainedTranslationManager $chainedTranslationManager
+    ) {
         $this->translationLoader = $translationLoader;
         $this->fileSystem = $filesystem;
         $this->chainedTranslationManager = $chainedTranslationManager;
@@ -115,6 +118,5 @@ class TranslationController extends AbstractTranslationController
         }
 
         return $data;
-
     }
 }

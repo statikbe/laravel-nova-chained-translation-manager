@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Statikbe\NovaTranslationManager\Http\Controllers\LanguageController;
 use Statikbe\NovaTranslationManager\Http\Controllers\TranslationController;

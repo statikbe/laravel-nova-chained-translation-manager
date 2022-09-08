@@ -291,7 +291,10 @@ export default {
     },
     updateTranslations(val) {
       const [id, locale] = this.field.split("_");
-
+      const index = this.translations.findIndex((t) => t.id === id);
+      this.translations[index].translations[locale] = val.value;
+      this.translations[index].updated = locale;
+      
       let translationIndex = this.translations.findIndex((t) => t.id === id);
       this.translations[translationIndex].translations[locale] = val.value;
       this.translations[translationIndex].updated = locale;

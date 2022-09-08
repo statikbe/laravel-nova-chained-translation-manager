@@ -2,11 +2,11 @@
 
 namespace Statikbe\NovaTranslationManager;
 
-use Laravel\Nova\Nova;
-use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Http\Middleware\Authenticate;
+use Laravel\Nova\Nova;
 use Statikbe\NovaTranslationManager\Http\Middleware\Authorize;
 
 class ToolServiceProvider extends ServiceProvider
@@ -59,9 +59,8 @@ class ToolServiceProvider extends ServiceProvider
             ->group(__DIR__.'/../routes/inertia.php');
 
         Route::middleware(['nova', Authorize::class])
-                ->namespace(__NAMESPACE__ . '\\Http\\Controllers')
-                ->prefix('nova-vendor/translation-manager')
-                ->group(__DIR__.'/../routes/api.php');
+            ->prefix('nova-vendor/translation-manager')
+            ->group(__DIR__.'/../routes/api.php');
     }
 
     /**
