@@ -1,11 +1,6 @@
 /* eslint-disable */
+import Translation from './views/Translation'
+
 Nova.booting((Vue, router, store) => {
-    router.addRoutes([
-        {
-            name: 'nova-translation-manager',
-            path: '/translation-manager',
-            component: require('./views/Translation'),
-        },
-    ]);
-    Vue.config.devtools = true;
+    Nova.inertia('nova-translation-manager', Translation);
 });

@@ -5,6 +5,8 @@ namespace Statikbe\NovaTranslationManager;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
 use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use Laravel\Nova\Menu\MenuSection;
 
 class TranslationManager extends Tool
 {
@@ -39,9 +41,9 @@ class TranslationManager extends Tool
      *
      * @return \Illuminate\View\View
      */
-    public function renderNavigation()
+    public function menu(Request $request)
     {
-        return view('translation-manager::navigation');
+        return MenuSection::make(__('Translations'))->path('/translation-manager')->icon('globe');
     }
 
     /**

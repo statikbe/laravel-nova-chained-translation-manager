@@ -4,7 +4,8 @@
     ref="input"
     :for="name"
     :class="{
-      'editable-input my-1 px-3 py-1 rounded-lg': editing,
+      'editable-input bg-white dark:bg-gray-800 my-1 px-3 py-1 rounded-lg':
+        editing,
     }"
     tabindex="0"
     class="block"
@@ -29,7 +30,7 @@
       :class="{
         updated: translation.updated && translation.updated === locale,
       }"
-      class="flex p-1 transition duration-500 cursor-pointer value hover:bg-gray-100"
+      class="flex p-1 transition duration-500 cursor-pointer value hover:bg-gray-100 dark:hover:bg-gray-700"
     >
       <div class="w-2/12 uppercase">
         {{ locale }}
@@ -37,15 +38,21 @@
       <div class="w-10/12">
         <template v-if="value">
           <button
-            class="flex items-baseline text-blue-500 hover:underline"
+            class="flex items-baseline text-primary-500 hover:underline"
             @click="handleEdit"
           >
-            <span class="text-left" v-html="value.slice(0, 100).replace(/<\/?[^>]+>/ig, ' ') + (value.length > 100 ? '...' : '')">
+            <span
+              class="text-left"
+              v-html="
+                value.slice(0, 100).replace(/<\/?[^>]+>/gi, ' ') +
+                (value.length > 100 ? '...' : '')
+              "
+            >
             </span>
           </button>
         </template>
         <template v-else>
-          <button class="flex text-blue-500 underline" @click="handleEdit">
+          <button class="flex text-primary-500 underline" @click="handleEdit">
             <span class="pr-3 text-left">
               <icon type="add" />
             </span>
@@ -55,7 +62,7 @@
           </button>
         </template>
       </div>
-      <icon class="ml-2 text-blue-500" type="edit" />
+      <icon class="ml-2 text-primary-500" type="edit" />
     </div>
   </label>
 </template>
@@ -83,7 +90,7 @@ export default {
     config: {
       type: Object,
       default: null,
-    }
+    },
   },
   computed: {
     value() {
@@ -145,9 +152,6 @@ export default {
   100% {
     background-color: #fff;
   }
-}
-.editable-input {
-  background-color: #ffffff;
 }
 
 .value > svg {
