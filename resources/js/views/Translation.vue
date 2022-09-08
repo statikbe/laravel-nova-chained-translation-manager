@@ -294,8 +294,12 @@ export default {
       const index = this.translations.findIndex((t) => t.id === id);
       this.translations[index].translations[locale] = val.value;
       this.translations[index].updated = locale;
+      
+      let translationIndex = this.translations.findIndex((t) => t.id === id);
+      this.translations[translationIndex].translations[locale] = val.value;
+      this.translations[translationIndex].updated = locale;
 
-      Nova.success("Updated");
+      Nova.success(__("Updated"));
 
       this.cancel();
     },
@@ -304,12 +308,12 @@ export default {
         Nova.request()
           .put("/nova-vendor/translation-manager/translations/", val)
           .then(() => this.updateTranslations(val))
-          .catch(() => {
-            Nova.error("Something went wrong!");
+          .catch((error) => {
+            Nova.error(__("Something went wrong!"));
           });
       } else {
         this.field = null;
-        Nova.error("A translation string is required");
+        Nova.error(__("A translation string is required"));
       }
     },
     cancel() {
