@@ -36,7 +36,7 @@ The package can be installed through Composer.
 composer require statikbe/laravel-nova-chained-translation-manager
 ```
 
-If you are still using Nova 3, please use the **v2 version**.
+Nova 4 support starts from version v3.0.0. If you are still using Nova 3, please use the **v2 version**. 
 
 ```
 composer require statikbe/laravel-nova-chained-translation-manager:~2
