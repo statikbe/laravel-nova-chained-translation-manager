@@ -1,5 +1,15 @@
 @import 'tailwindcss/base.css';
-
 @import 'tailwindcss/components.css';
-
 @import 'tailwindcss/utilities.css';
+
+.ck-editor__editable {
+  ul {
+    @apply list-disc;
+  }
+  ol {
+    @apply list-decimal;
+  }
+  a {
+    @apply text-[#297ec0];
+  }
+}
