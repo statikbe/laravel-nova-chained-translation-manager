@@ -13,7 +13,7 @@
       @trix-file-accept="handleFileAccept"
       :value="value"
       :placeholder="placeholder"
-      class="trix-content"
+      class="trix-content dark:bg-slate-600 dark:border-slate-900 dark:text-white"
     />
 
     <textarea
@@ -32,10 +32,10 @@
       class="w-full form-control form-input form-input-bordered"
     />
 
-    <div class="flex justify-end items-center my-3">
+    <div class="flex items-center justify-end my-3">
       <button
         type="button"
-        class="appearance-none bg-transparent font-bold text-gray-400 hover:text-gray-300 active:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 dark:active:text-gray-600 dark:hover:bg-gray-800 cursor-pointer rounded text-sm font-bold focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-3 appearance-none bg-transparent font-bold text-gray-400 hover:text-gray-300 active:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 dark:active:text-gray-600 dark:hover:bg-gray-800"
+        class="inline-flex items-center justify-center px-3 text-sm font-bold text-gray-400 bg-transparent rounded appearance-none cursor-pointer hover:text-gray-300 active:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 dark:active:text-gray-600 dark:hover:bg-gray-800 focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 h-9"
         @click="cancel"
       >
         <span>
@@ -44,7 +44,7 @@
       </button>
       <button
         type="button"
-        class="flex-shrink-0 shadow rounded focus:outline-none ring-primary-200 dark:ring-gray-600 focus:ring bg-sky-500 hover:bg-sky-400 active:bg-sky-600 text-white dark:text-gray-800 inline-flex items-center font-bold px-4 h-9 text-sm flex-shrink-0"
+        class="inline-flex items-center flex-shrink-0 px-4 text-sm font-bold text-white rounded shadow focus:outline-none ring-primary-200 dark:ring-gray-600 focus:ring bg-sky-500 hover:bg-sky-400 active:bg-sky-600 dark:text-gray-800 h-9"
         @click="save"
       >
         <span>

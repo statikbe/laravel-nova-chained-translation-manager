@@ -52,7 +52,7 @@
           </button>
         </template>
         <template v-else>
-          <button class="flex text-primary-500 underline" @click="handleEdit">
+          <button class="flex underline text-primary-500" @click="handleEdit">
             <span class="pr-3 text-left">
               <icon type="add" />
             </span>

@@ -4,7 +4,7 @@
     <div class="translation-manager">
       <div class="flex">
         <!-- search -->
-        <div class="relative mb-6 h-9 flex-no-shrink flex items-center">
+        <div class="relative flex items-center mb-6 h-9 flex-no-shrink">
           <icon
             type="search"
             class="absolute ml-1 search-icon-center text-70"
@@ -15,7 +15,7 @@
               :placeholder="__('Search text')"
               type="search"
               name="search"
-              class="shadow appearance-none form-search w-search pl-search p-2 pl-8 rounded-md dark:bg-gray-800"
+              class="p-2 pl-8 rounded-md shadow appearance-none form-search w-search pl-search dark:bg-gray-800"
             />
           </label>
         </div>
@@ -107,7 +107,7 @@
           :key="translation.id"
           class="px-4 py-2 my-2"
         >
-          <div class="flex mr-6 font-bold no-underline border-b text-90">
+          <div class="flex mr-6 font-bold no-underline border-b dark:border-slate-600 text-90">
             <div class="w-12/12">
               {{ translation.group.toUpperCase() }} - {{ translation.key }}
             </div>
