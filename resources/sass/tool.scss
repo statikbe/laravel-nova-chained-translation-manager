@@ -1,16 +1,4 @@
 // Nova Tool CSS
-@import '../../node_modules/tailwindcss/base.css';
+// @import '../../node_modules/tailwindcss/base.css';
 @import '../../node_modules/tailwindcss/components.css';
 @import '../../node_modules/tailwindcss/utilities.css';
-
-.ck-editor__editable {
-  ul {
-    list-style-type: disc;
-  }
-  ol {
-    list-style-type: decimal;
-  }
-  a {
-    color: #297ec0;
-  }
-}
