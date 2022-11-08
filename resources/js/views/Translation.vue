@@ -290,7 +290,7 @@ export default {
         });
     },
     updateTranslations(val) {
-      const [id, locale] = this.field.split("_");
+      const [id, locale] = this.field.split(/_(.*)/s);
       const index = this.translations.findIndex((t) => t.id === id);
       this.translations[index].translations[locale] = val.value;
       this.translations[index].updated = locale;
