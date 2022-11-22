@@ -290,7 +290,7 @@ export default {
         });
     },
     updateTranslations(val) {
-      const [id, locale] = this.field.split("_");
+      const [id, locale] = this.field.split(/_(.*)/s);
       const index = this.translations.findIndex((t) => t.id === id);
       this.translations[index].translations[locale] = val.value;
       this.translations[index].updated = locale;
@@ -299,7 +299,7 @@ export default {
       this.translations[translationIndex].translations[locale] = val.value;
       this.translations[translationIndex].updated = locale;
 
-      Nova.success(__("Updated"));
+      Nova.success(this.__("Updated"));
 
       this.cancel();
     },
@@ -309,11 +309,11 @@ export default {
           .put("/nova-vendor/translation-manager/translations/", val)
           .then(() => this.updateTranslations(val))
           .catch((error) => {
-            Nova.error(__("Something went wrong!"));
+            Nova.error(this.__("Something went wrong!"));
           });
       } else {
         this.field = null;
-        Nova.error(__("A translation string is required"));
+        Nova.error(this.__("A translation string is required"));
       }
     },
     cancel() {
