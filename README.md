@@ -1,3 +1,5 @@
+<p align="center"><img src="/assets/card.png" alt="Card of Laravel Nova Chained Translation Manager"></p>
+
 # Laravel Nova Chained Translation Manager
 
 The Laravel Nova Chained Translation Manager allows you to easily edit the translations of your current Laravel environment.
