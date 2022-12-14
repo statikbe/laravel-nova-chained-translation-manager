@@ -298,8 +298,12 @@ export default {
     },
     submit(val) {
       if (val && val.value) {
+        // This is a fix for safari because put doesn't work in safari.
+        // https://laracasts.com/discuss/channels/laravel/put-ajax-request-442-error
+        val['_method'] = 'PUT';
+        
         Nova.request()
-          .put("/nova-vendor/translation-manager/translations/", val)
+          .post("/nova-vendor/translation-manager/translations/", val)
           .then(() => this.updateTranslations(val))
           .catch(() => {
             this.$toasted.show("Something went wrong!", {
