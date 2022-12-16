@@ -5,6 +5,8 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/statikbe/laravel-nova-chained-translation-manager.svg?style=flat-square)](https://packagist.org/packages/statikbe/laravel-nova-chained-translation-manager)
 [![Total Downloads](https://img.shields.io/packagist/dt/statikbe/laravel-nova-chained-translation-manager.svg?style=flat-square)](https://packagist.org/packages/statikbe/laravel-nova-chained-translation-manager)
 
+## NOTE: If you are looking for nova 3 check out [branch 3.0](https://github.com/statikbe/laravel-nova-chained-translation-manager/tree/3.0)
+
 The Laravel Nova Chained Translation Manager allows you to easily edit the translations of your current Laravel environment.
 This translation manager uses the Laravel Chained Translator, that enables you to override the default translations with
 translations for a specific environment, e.g. a content manager can independently edit and override the translation files
