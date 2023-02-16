@@ -303,7 +303,7 @@ export default {
         val['_method'] = 'PUT';
         
         Nova.request()
-          .post("/nova-vendor/translation-manager/translations/", val)
+          .post("/nova-vendor/translation-manager/translations", val)
           .then(() => this.updateTranslations(val))
           .catch(() => {
             this.$toasted.show("Something went wrong!", {
