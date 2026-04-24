@@ -4,8 +4,6 @@ namespace Statikbe\NovaTranslationManager;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Nova\Events\ServingNova;
-use Laravel\Nova\Http\Middleware\Authenticate;
 use Laravel\Nova\Nova;
 use Statikbe\NovaTranslationManager\Http\Middleware\Authorize;
 
@@ -39,9 +37,6 @@ class ToolServiceProvider extends ServiceProvider
             $this->routes();
         });
 
-        Nova::serving(function (ServingNova $event) {
-            //
-        });
     }
 
     /**
@@ -55,7 +50,7 @@ class ToolServiceProvider extends ServiceProvider
             return;
         }
 
-        Nova::router(['nova', Authenticate::class, Authorize::class], 'translation-manager')
+        Nova::router(['nova', 'nova.auth', Authorize::class], 'translation-manager')
             ->group(__DIR__.'/../routes/inertia.php');
 
         Route::middleware(['nova', Authorize::class])
