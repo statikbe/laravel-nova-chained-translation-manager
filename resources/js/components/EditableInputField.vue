@@ -1,5 +1,7 @@
 <template>
   <div class="editable-input-field">
+    <!-- eslint-disable-next-line vue-a11y/form-has-label -->
+
     <trix-editor
       v-if="config.editor === 'trix'"
       ref="theEditor"
@@ -19,8 +21,7 @@
       ref="input"
       v-model="input"
       type="text"
-      rows="3"
-      class="w-full px-3 py-2 text-sm bg-white border border-gray-200 rounded-lg shadow-sm form-control dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+      class="w-full form-control form-input form-input-bordered"
       @keydown.meta.enter="save"
       @keydown.ctrl.enter="save"
       @keydown.esc="cancel"
@@ -31,33 +32,29 @@
       ref="input"
       v-model="input"
       type="text"
-      class="w-full px-3 py-2 text-sm bg-white border border-gray-200 rounded-lg shadow-sm form-control dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+      class="w-full form-control form-input form-input-bordered"
       @keydown.enter="save"
       @keydown.esc="cancel"
     />
 
-    <div class="flex items-center justify-end gap-2 mt-3">
-      <span class="mr-auto text-xs text-gray-400 dark:text-gray-600">
-        <template v-if="config.editor !== 'textarea'">
-          Enter {{ __('to save') }}
-        </template>
-        <template v-else>
-          ⌘+Enter {{ __('to save') }}
-        </template>
-      </span>
+    <div class="flex items-center justify-end my-3">
       <button
         type="button"
-        class="px-3 py-1.5 text-sm text-gray-500 transition-colors rounded-md hover:text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-gray-300 dark:hover:bg-gray-700"
+        class="inline-flex items-center justify-center px-3 text-sm font-bold text-gray-400 bg-transparent rounded appearance-none cursor-pointer hover:text-gray-300 active:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 dark:active:text-gray-600 dark:hover:bg-gray-800 focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 h-9"
         @click="cancel"
       >
-        {{ __("Cancel") }}
+        <span>
+          {{ __("cancel") }}
+        </span>
       </button>
       <button
         type="button"
-        class="px-4 py-1.5 text-sm font-medium text-white transition-colors rounded-md shadow-sm bg-primary-500 hover:bg-primary-600 active:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:ring-offset-gray-800"
+        class="inline-flex items-center flex-shrink-0 px-4 text-sm font-bold text-white rounded shadow focus:outline-none ring-primary-200 dark:ring-gray-600 focus:ring bg-sky-500 hover:bg-sky-400 active:bg-sky-600 dark:text-gray-800 h-9"
         @click="save"
       >
-        {{ __("Save") }}
+        <span>
+          {{ __("save") }}
+        </span>
       </button>
     </div>
   </div>

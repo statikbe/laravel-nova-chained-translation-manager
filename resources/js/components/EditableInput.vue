@@ -1,20 +1,18 @@
 <template>
+  <!-- eslint-disable-next-line vue-a11y/label-has-for -->
   <label
     ref="input"
     :for="name"
     :class="{
-      'bg-primary-50 dark:bg-gray-800 px-5 py-3': editing,
-      'px-5 py-2.5': !editing,
+      'editable-input bg-white dark:bg-gray-800 my-1 px-3 py-1 rounded-lg':
+        editing,
     }"
     tabindex="0"
-    class="block transition-colors duration-200"
+    class="block"
     @focus="handleEdit"
   >
-    <span v-if="editing" class="flex items-center gap-2 mb-2">
-      <span class="locale-badge">
-        {{ locale.toUpperCase() }}
-      </span>
-      <span class="text-xs text-gray-400 dark:text-gray-500">{{ translationKey }}</span>
+    <span v-if="editing" class="block my-1 leading-tight text-80">
+      {{ locale.toUpperCase() }} - {{ translationKey }}
     </span>
 
     <editable-input-field
@@ -32,44 +30,41 @@
       :class="{
         updated: translation.updated && translation.updated === locale,
       }"
-      class="flex items-center gap-3 transition-all duration-300 rounded-md cursor-pointer group hover:bg-gray-50 dark:hover:bg-gray-800/50 -mx-2 px-2 py-1"
+      class="flex p-1 transition duration-500 cursor-pointer value hover:bg-gray-100 dark:hover:bg-gray-700"
     >
-      <span class="locale-badge">
-        {{ locale.toUpperCase() }}
-      </span>
-      <div class="flex-1 min-w-0">
+      <div class="w-2/12">
+        <span class="inline-block px-1.5 py-0.5 text-xs font-semibold tracking-wide uppercase rounded bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300">
+          {{ locale }}
+        </span>
+      </div>
+      <div class="w-10/12">
         <template v-if="value">
           <button
-            class="text-sm text-left text-gray-700 truncate dark:text-gray-300 group-hover:text-primary-600 dark:group-hover:text-primary-400"
+            class="flex items-baseline text-primary-500 hover:underline"
             @click="handleEdit"
           >
             <span
+              class="text-left"
               v-html="
-                value.slice(0, 120).replace(/<\/?[^>]+>/gi, ' ') +
-                (value.length > 120 ? '...' : '')
+                value.slice(0, 100).replace(/<\/?[^>]+>/gi, ' ') +
+                (value.length > 100 ? '...' : '')
               "
             >
             </span>
           </button>
         </template>
         <template v-else>
-          <button
-            class="inline-flex items-center gap-1.5 text-sm text-gray-400 dark:text-gray-500 hover:text-primary-500 dark:hover:text-primary-400"
-            @click="handleEdit"
-          >
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-            </svg>
-            {{ __("Add translation") }}
+          <button class="flex underline text-primary-500" @click="handleEdit">
+            <span class="pr-3 text-left">
+              <icon type="add" />
+            </span>
+            <span class="text-left">
+              {{ __("add translation") }}
+            </span>
           </button>
         </template>
       </div>
-      <svg
-        class="flex-shrink-0 w-4 h-4 text-gray-300 transition-opacity duration-200 opacity-0 group-hover:opacity-100 dark:text-gray-600"
-        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-      </svg>
+      <icon class="ml-2 text-primary-500" type="edit" />
     </div>
   </label>
 </template>
@@ -149,32 +144,29 @@ export default {
 </script>
 
 <style scoped>
-.locale-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 2rem;
-  padding: 0.125rem 0.5rem;
-  font-size: 0.675rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: rgb(var(--colors-primary-600));
-  background-color: rgb(var(--colors-primary-50));
-  border-radius: 0.375rem;
+@keyframes update {
+  0% {
+    background-color: #fff;
+  }
+  25% {
+    background-color: #afa;
+  }
+  100% {
+    background-color: #fff;
+  }
 }
 
-:root.dark .locale-badge {
-  color: rgb(var(--colors-primary-400));
-  background-color: rgba(var(--colors-primary-500), 0.15);
+.value > svg {
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.5s;
 }
 
-@keyframes update-flash {
-  0% { background-color: transparent; }
-  15% { background-color: rgba(16, 185, 129, 0.15); }
-  100% { background-color: transparent; }
+.value:hover > svg {
+  opacity: 1;
 }
-
 .updated {
-  animation: update-flash 2s ease-out;
+  animation-name: update;
+  animation-duration: 2s;
 }
 </style>
