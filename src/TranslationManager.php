@@ -32,8 +32,7 @@ class TranslationManager extends Tool
      */
     public function boot()
     {
-        Nova::script('translation-manager', __DIR__.'/../dist/js/tool.js');
-        Nova::style('translation-manager', __DIR__.'/../dist/css/tool.css');
+        Nova::mix('translation-manager', __DIR__.'/../dist/mix-manifest.json');
     }
 
     /**

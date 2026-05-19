@@ -32,8 +32,10 @@
       }"
       class="flex p-1 transition duration-500 cursor-pointer value hover:bg-gray-100 dark:hover:bg-gray-700"
     >
-      <div class="w-2/12 uppercase">
-        {{ locale }}
+      <div class="w-2/12">
+        <span class="inline-block px-1.5 py-0.5 text-xs font-semibold tracking-wide uppercase rounded bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300">
+          {{ locale }}
+        </span>
       </div>
       <div class="w-10/12">
         <template v-if="value">

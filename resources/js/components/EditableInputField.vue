@@ -22,6 +22,9 @@
       v-model="input"
       type="text"
       class="w-full form-control form-input form-input-bordered"
+      @keydown.meta.enter="save"
+      @keydown.ctrl.enter="save"
+      @keydown.esc="cancel"
     />
 
     <input
@@ -30,6 +33,8 @@
       v-model="input"
       type="text"
       class="w-full form-control form-input form-input-bordered"
+      @keydown.enter="save"
+      @keydown.esc="cancel"
     />
 
     <div class="flex items-center justify-end my-3">

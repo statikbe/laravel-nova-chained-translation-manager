@@ -32,6 +32,7 @@
           <dropdown class="mb-6 rounded bg-30 hover:bg-40">
             <dropdown-trigger class="px-3">
               {{ __("Select group") }}
+              <span v-if="selected.groups.length && selected.groups.length !== groups.length" class="ml-1 text-xs opacity-75">({{ selected.groups.length }})</span>
             </dropdown-trigger>
             <template #menu>
               <dropdown-menu slot="menu" direction="rtl" width="250">
@@ -68,6 +69,7 @@
           <dropdown class="mb-6 rounded bg-30 hover:bg-40">
             <dropdown-trigger class="px-3">
               {{ __("Select languages") }}
+              <span v-if="selected.locales.length && selected.locales.length !== locales.length" class="ml-1 text-xs opacity-75">({{ selected.locales.length }})</span>
             </dropdown-trigger>
             <template #menu>
               <dropdown-menu slot="menu" direction="rtl" width="250">
@@ -100,6 +102,12 @@
           </dropdown>
         </div>
       </div>
+
+      <!-- results count -->
+      <div v-if="filteredTranslations && translations" class="mb-3 text-sm text-80">
+        {{ filteredTranslations.length }} / {{ translations.length }} {{ __('translations') }}
+      </div>
+
       <!-- translations list -->
       <template v-if="filteredTranslations">
         <card
@@ -107,10 +115,11 @@
           :key="translation.id"
           class="px-4 py-2 my-2"
         >
-          <div class="flex mr-6 font-bold no-underline border-b dark:border-slate-600 text-90">
-            <div class="w-12/12">
-              {{ translation.group.toUpperCase() }} - {{ translation.key }}
-            </div>
+          <div class="flex items-center py-2 mr-6 border-b dark:border-slate-600">
+            <span class="inline-block px-2 py-0.5 mr-2 text-xs font-bold tracking-wider uppercase rounded bg-primary-500 text-white">
+              {{ translation.group }}
+            </span>
+            <span class="font-medium text-90">{{ translation.key }}</span>
           </div>
           <div v-if="!selected.locales.length" class="my-3">
             <editable-input
@@ -119,6 +128,7 @@
               :locale="locale"
               :translation="translation"
               :editing="field === `${translation.id}_${locale}`"
+              :config="config"
               @toggle="field = `${translation.id}_${locale}`"
               @submit="submit"
               @cancel="cancel"
@@ -224,7 +234,6 @@ export default {
               return true;
             }
           })
-        // .sort((a, b) => (a.key > b.key ? 1 : -1))
       );
     },
     onlyMissingTranslations() {
@@ -294,7 +303,7 @@ export default {
       const index = this.translations.findIndex((t) => t.id === id);
       this.translations[index].translations[locale] = val.value;
       this.translations[index].updated = locale;
-      
+
       let translationIndex = this.translations.findIndex((t) => t.id === id);
       this.translations[translationIndex].translations[locale] = val.value;
       this.translations[translationIndex].updated = locale;
@@ -305,8 +314,6 @@ export default {
     },
     submit(val) {
       if (val && val.value) {
-        // This is a fix for safari because put doesn't work in safari.
-        // https://laracasts.com/discuss/channels/laravel/put-ajax-request-442-error
         val['_method'] = 'PUT';
 
         Nova.request()
