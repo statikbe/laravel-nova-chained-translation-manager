@@ -41,14 +41,7 @@
             class="flex items-baseline text-primary-500 hover:underline"
             @click="handleEdit"
           >
-            <span
-              class="text-left"
-              v-html="
-                value.slice(0, 100).replace(/<\/?[^>]+>/gi, ' ') +
-                (value.length > 100 ? '...' : '')
-              "
-            >
-            </span>
+            <span class="text-left">{{ preview }}</span>
           </button>
         </template>
         <template v-else>
@@ -69,6 +62,18 @@
 
 <script>
 import EditableInputFieldVue from "./EditableInputField.vue";
+
+/**
+ * Returns the text of an HTML string without interpreting it: DOMParser creates an inert document, so no scripts
+ * run and no resources (e.g. images) are loaded.
+ */
+function textContent(html) {
+  if (!html) {
+    return "";
+  }
+  const doc = new DOMParser().parseFromString(String(html), "text/html");
+  return (doc.body.textContent || "").replace(/\s+/g, " ").trim();
+}
 
 export default {
   components: {
@@ -100,6 +105,11 @@ export default {
         }
       }
       return "";
+    },
+    preview() {
+      // Show the translation as plain text: HTML in a translation is never interpreted, only its text is shown.
+      const text = textContent(this.value);
+      return text.length > 100 ? `${text.slice(0, 100)}...` : text;
     },
     name() {
       if (this.translation) {

@@ -58,7 +58,7 @@ class ToolServiceProvider extends ServiceProvider
         Nova::router(['nova', Authenticate::class, Authorize::class], 'translation-manager')
             ->group(__DIR__.'/../routes/inertia.php');
 
-        Route::middleware(['nova', Authorize::class])
+        Route::middleware(['nova:api', Authorize::class])
             ->prefix('nova-vendor/translation-manager')
             ->group(__DIR__.'/../routes/api.php');
     }

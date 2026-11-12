@@ -57,10 +57,25 @@ use Statikbe\NovaTranslationManager\TranslationManager;
     public function tools()
     {
         return [
-            new TranslationManager,
+            (new TranslationManager)
+                ->canSee(fn ($request) => $request->user()?->can('manage-translations')),
         ];
     }
 
+```
+
+### Restricting access
+
+We strongly recommend restricting access to the tool with `canSee()`, as shown above. Without it, every user that can
+access Nova (the `viewNova` gate) can view and edit all translations. The check is applied to the tool page and to every
+API request of the tool.
+
+Define the gate in a service provider, for example:
+
+```php
+use Illuminate\Support\Facades\Gate;
+
+Gate::define('manage-translations', fn ($user) => $user->isAdmin());
 ```
 
 ## Configuration
@@ -167,6 +182,16 @@ E.g.
 
 You can combine the custom translations of the current environment with the default translation files, by running the
 command provided by the [Laravel Chained Translator library](https://github.com/statikbe/laravel-chained-translator) package.
+
+## Testing
+
+The tests need Laravel Nova, which is a paid package, so they are not run in CI. To run them locally, make sure Composer
+can install `laravel/nova` from `https://nova.laravel.com` with your Nova credentials, then run:
+
+```shell
+composer install
+composer test
+```
 
 ## Credits
 

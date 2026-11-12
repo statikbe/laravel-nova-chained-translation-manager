@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 use Statikbe\LaravelChainedTranslator\ChainedTranslationManager;
 use Statikbe\LaravelChainedTranslator\ChainLoader;
+use Statikbe\LaravelChainedTranslator\Exceptions\InvalidTranslationPathException;
 use Statikbe\NovaTranslationManager\Http\Requests\UpdateTranslationRequest;
 use Statikbe\NovaTranslationManager\TranslationManager;
 
@@ -43,8 +44,7 @@ class TranslationController extends AbstractTranslationController
      */
     public function index(): JsonResponse
     {
-        $groups = $this->chainedTranslationManager->getTranslationGroups();
-        $groups = collect($groups)->diff(TranslationManager::getConfig('ignore_groups',[]))->values()->toArray();
+        $groups = TranslationManager::getAllowedGroups();
 
         $languages = $this->getLocalesData();
         $translations = $this->getTranslations($languages, $groups);
@@ -68,20 +68,26 @@ class TranslationController extends AbstractTranslationController
     public function update(UpdateTranslationRequest $request): JsonResponse
     {
         # If the editor is a Trix Editor we will stripe all HTML tags excluding the ones defined by the user.
-        $value = $request->input('value');
+        $value = $request->validated('value');
         if (TranslationManager::getConfig('editor') === 'trix') {
             $value = strip_tags(
-                $request->input('value'),
+                $value,
                 TranslationManager::getConfig('trix_allowed_tags', '')
             );
         }
 
-        $this->chainedTranslationManager->save(
-            $request->input('locale'),
-            $request->input('group'),
-            $request->input('key'),
-            $value
-        );
+        try {
+            $this->chainedTranslationManager->save(
+                $request->validated('locale'),
+                $request->validated('group'),
+                $request->validated('key'),
+                $value
+            );
+        } catch (InvalidTranslationPathException $e) {
+            return response()->json([
+                'message' => __('The translation could not be saved.'),
+            ], 422);
+        }
 
         return response()->json(['success' => true]);
     }

@@ -7,3 +7,4 @@ yarn-error.log
 .phpunit.result.cache
 vendor
 composer.lock
+.phpunit.cache

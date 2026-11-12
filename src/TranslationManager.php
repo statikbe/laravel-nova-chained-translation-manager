@@ -7,6 +7,7 @@ use Illuminate\Support\Arr;
 use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
+use Statikbe\LaravelChainedTranslator\ChainedTranslationManager;
 
 class TranslationManager extends Tool
 {
@@ -79,5 +80,20 @@ class TranslationManager extends Tool
     {
         # At PHP 8.0 We can use return types as follows : :array|string
         return $key !== null ? Arr::get(static::$config, $key, $default) : static::$config;
+    }
+
+    /**
+     * Returns the translation groups that may be shown and edited (all groups except the ignored ones).
+     *
+     * @return array<int, string>
+     */
+    public static function getAllowedGroups(): array
+    {
+        $groups = app(ChainedTranslationManager::class)->getTranslationGroups();
+
+        return collect($groups)
+            ->diff(static::getConfig('ignore_groups', []))
+            ->values()
+            ->toArray();
     }
 }
