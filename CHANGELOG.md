@@ -2,9 +2,9 @@
 
 All notable changes to the Laravel __Nova Chained Translation Manager__ will be documented in this file.
 
-## Version 3.1.0 - Unreleased
+## Version 3.1.0
 ### Security
-- Require authentication for the translation API and validate locales and translation groups received from the browser (GHSA-xxxx-xxxx-xxxx).
+- Require authentication for the translation API and validate locales and translation groups received from the browser (GHSA-97v9-vc85-hq3r).
 
 ### Changed
 - Require `statikbe/laravel-chained-translator` `^2.7`. This drops support for PHP 8.0 and Laravel 8; those
